@@ -5,14 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>株式会社pino foresta - 中小零細企業の越境ECをサポート</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <style>
         :root {
-            --primary-color: #1a5d40;
-            --secondary-color: #d4b78f;
-            --accent-color: #e67e22;
-            --light-color: #f5f5f0;
-            --dark-color: #333333;
+            --primary-color: #000000;
+            --secondary-color: #1a5d40;
+            --accent-color: #34c759;
+            --light-color: #ffffff;
+            --light-gray: #f5f5f7;
+            --medium-gray: #86868b;
+            --dark-color: #1d1d1f;
             --spacing: 2rem;
         }
         
@@ -23,29 +24,37 @@
         }
         
         body {
-            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
-            line-height: 1.6;
+            font-family: 'SF Pro JP', 'SF Pro Display', 'SF Pro Icons', 'Hiragino Kaku Gothic Pro', 'ヒラギノ角ゴ Pro W3', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            line-height: 1.5;
             color: var(--dark-color);
             background-color: var(--light-color);
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
         
         a {
             text-decoration: none;
-            color: var(--primary-color);
+            color: var(--secondary-color);
+            transition: color 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--accent-color);
         }
         
         .container {
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 1rem;
+            padding: 0 1.5rem;
         }
         
         /* ヘッダー */
         header {
-            background-color: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
             position: fixed;
             width: 100%;
             top: 0;
@@ -54,8 +63,7 @@
         }
         
         header.scrolled {
-            background-color: rgba(255, 255, 255, 0.98);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
         
         .header-container {
@@ -63,6 +71,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 1rem;
+            height: 60px;
         }
         
         .logo {
@@ -71,17 +80,17 @@
         }
         
         .logo h1 {
-            font-size: 1.5rem;
-            color: var(--primary-color);
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--dark-color);
             margin-left: 0.5rem;
-            transition: color 0.3s;
         }
         
         .logo-icon {
-            width: 40px;
-            height: 40px;
-            background-color: var(--primary-color);
-            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            background-color: var(--secondary-color);
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -91,7 +100,7 @@
         }
         
         .logo:hover .logo-icon {
-            transform: rotate(10deg);
+            transform: scale(1.05);
             background-color: var(--accent-color);
         }
         
@@ -101,24 +110,24 @@
         }
         
         nav ul li {
-            margin-left: 1.5rem;
-            position: relative;
+            margin-left: 2rem;
         }
         
         nav ul li a {
-            font-weight: 500;
+            font-weight: 400;
+            font-size: 0.95rem;
+            color: var(--dark-color);
             transition: color 0.3s;
-            padding: 0.5rem 0;
-            display: inline-block;
+            position: relative;
         }
         
         nav ul li a::after {
             content: '';
             position: absolute;
             width: 0;
-            height: 2px;
+            height: 1px;
             background-color: var(--accent-color);
-            bottom: 0;
+            bottom: -4px;
             left: 0;
             transition: width 0.3s ease;
         }
@@ -137,7 +146,7 @@
             border: none;
             font-size: 1.5rem;
             cursor: pointer;
-            color: var(--primary-color);
+            color: var(--dark-color);
             transition: color 0.3s;
         }
         
@@ -147,126 +156,157 @@
         
         /* ヒーローセクション */
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1596443686812-2f45229eebc3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: white;
+            background-color: var(--light-color);
+            color: var(--dark-color);
             text-align: center;
-            padding: 10rem 1rem;
-            margin-top: 70px;
+            padding: 10rem 1rem 6rem;
+            margin-top: 60px;
             position: relative;
             overflow: hidden;
         }
         
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(26, 93, 64, 0.3) 0%, rgba(0, 0, 0, 0.5) 100%);
-            z-index: 1;
-        }
-        
         .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
             position: relative;
             z-index: 2;
         }
         
+        .hero-subtitle {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
         .hero h2 {
-            font-size: 3rem;
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
             margin-bottom: 1.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            animation: fadeInUp 1s ease;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
         }
         
         .hero p {
             font-size: 1.3rem;
-            max-width: 800px;
+            max-width: 700px;
             margin: 0 auto 2.5rem;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-            animation: fadeInUp 1.2s ease;
+            color: var(--medium-gray);
+            opacity: 0;
+            animation: fadeInUp 1.2s ease forwards;
         }
         
-        .btn {
-            display: inline-block;
-            background-color: var(--accent-color);
-            color: white;
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: all 0.3s;
-            border: 2px solid var(--accent-color);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        .hero-slider {
             position: relative;
+            max-width: 100%;
+            margin: 3rem auto 0;
             overflow: hidden;
-            z-index: 1;
-            animation: fadeInUp 1.4s ease;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            height: 400px;
+            opacity: 0;
+            animation: fadeInUp 1.4s ease forwards;
         }
         
-        .btn::before {
+        .slider-container {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+        
+        .slide {
+            min-width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .slide::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 0;
+            width: 100%;
             height: 100%;
-            background-color: var(--primary-color);
-            transition: width 0.3s ease;
-            z-index: -1;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.1));
+        }
+        
+        .slide-content {
+            position: absolute;
+            bottom: 40px;
+            left: 40px;
+            color: white;
+            text-align: left;
+            max-width: 60%;
+        }
+        
+        .slide-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .slide-content p {
+            font-size: 1rem;
+            margin: 0;
+            color: white;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        .slider-nav {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .slider-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .slider-dot.active {
+            background-color: white;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s;
+            opacity: 0;
+            animation: fadeInUp 1.4s ease forwards;
         }
         
         .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
             color: white;
-            border-color: var(--primary-color);
         }
         
-        .btn:hover::before {
-            width: 100%;
-        }
-        
-        .btn:active {
-            transform: translateY(-1px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 2rem;
-            margin-top: 3rem;
-            animation: fadeInUp 1.6s ease;
-        }
-        
-        .stat-item {
-            background-color: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px);
-            padding: 1.5rem;
-            border-radius: 10px;
-            min-width: 200px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: transform 0.3s, background-color 0.3s;
-        }
-        
-        .stat-item:hover {
-            transform: translateY(-5px);
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-        
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--secondary-color);
             color: var(--secondary-color);
+            margin-left: 1rem;
         }
         
-        .stat-text {
-            font-size: 1rem;
+        .btn-outline:hover {
+            background-color: var(--secondary-color);
+            color: white;
         }
         
         /* アニメーション */
@@ -281,109 +321,120 @@
             }
         }
         
-        @keyframes float {
-            0% {
-                transform: translateY(0px);
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
             }
-            50% {
-                transform: translateY(-10px);
+            to {
+                opacity: 1;
             }
-            100% {
-                transform: translateY(0px);
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
             }
         }
         
         /* セクション共通 */
         section {
-            padding: 5rem 0;
+            padding: 6rem 0;
             position: relative;
         }
         
         .section-title {
             text-align: center;
             margin-bottom: 4rem;
-            position: relative;
+        }
+        
+        .section-subtitle {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            display: block;
         }
         
         .section-title h2 {
             font-size: 2.5rem;
-            color: var(--primary-color);
-            display: inline-block;
-            position: relative;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 1.5rem;
         }
         
-        .section-title h2::after {
-            content: '';
-            display: block;
-            width: 70px;
-            height: 3px;
-            background-color: var(--accent-color);
-            margin: 0.8rem auto 0;
-            transition: width 0.3s;
-        }
-        
-        .section-title:hover h2::after {
-            width: 100px;
-        }
-        
-        .section-subtitle {
-            font-size: 1.2rem;
-            color: #666;
+        .section-description {
+            font-size: 1.1rem;
+            color: var(--medium-gray);
             max-width: 700px;
-            margin: 1rem auto 0;
+            margin: 0 auto;
         }
         
         /* ハイライトバナー */
         .highlight-banner {
-            background-color: var(--primary-color);
+            background-color: var(--secondary-color);
             color: white;
-            padding: 3rem 0;
+            padding: 4rem 0;
             text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .highlight-banner::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://images.unsplash.com/photo-1596443686812-2f45229eebc3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80') center/cover;
-            opacity: 0.1;
-            z-index: 1;
         }
         
         .highlight-content {
-            position: relative;
-            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
         }
         
         .highlight-banner h3 {
             font-size: 2rem;
+            font-weight: 600;
             margin-bottom: 1.5rem;
-            color: var(--secondary-color);
         }
         
         .highlight-banner p {
-            max-width: 800px;
-            margin: 0 auto;
             font-size: 1.2rem;
-            font-weight: 400;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+        
+        .highlight-stats {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .highlight-stat {
+            text-align: center;
+            padding: 1rem;
+            min-width: 150px;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--accent-color);
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
         }
         
         /* 会社概要 */
         .about {
-            background-color: white;
-            overflow: hidden;
+            background-color: var(--light-color);
         }
         
         .about-content {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            gap: 3rem;
+            gap: 4rem;
         }
         
         .about-text {
@@ -394,90 +445,150 @@
         .about-text p {
             margin-bottom: 1.5rem;
             font-size: 1.1rem;
+            color: var(--medium-gray);
+            line-height: 1.7;
         }
         
         .about-text strong {
-            color: var(--primary-color);
+            color: var(--dark-color);
             font-weight: 600;
         }
         
         .about-image {
             flex: 1;
             min-width: 300px;
-            position: relative;
         }
         
         .about-image img {
-            max-width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.5s, box-shadow 0.5s;
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s;
         }
         
         .about-image:hover img {
-            transform: scale(1.03);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            transform: scale(1.02);
         }
         
-        .about-image::before {
-            content: '';
-            position: absolute;
+        /* 少数精鋭チーム */
+        .team {
+            background-color: var(--light-gray);
+            padding: 6rem 0;
+        }
+        
+        .team-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+        
+        .team-intro p {
+            font-size: 1.1rem;
+            color: var(--medium-gray);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        
+        .team-members {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .team-member {
+            display: flex;
+            align-items: center;
             width: 100%;
-            height: 100%;
-            border: 3px solid var(--secondary-color);
-            border-radius: 10px;
-            top: 20px;
-            left: 20px;
-            z-index: -1;
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .member-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--secondary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        .member-info {
+            flex: 1;
+        }
+        
+        .member-name-title {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .member-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-right: 1rem;
+        }
+        
+        .member-position {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+        }
+        
+        .member-description {
+            color: var(--medium-gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .member-tags {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 0.8rem;
+            gap: 0.5rem;
+        }
+        
+        .member-tag {
+            font-size: 0.8rem;
+            background-color: var(--light-gray);
+            color: var(--secondary-color);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
         }
         
         /* サービス */
         .services {
             background-color: var(--light-color);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .services::before {
-            content: '';
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background-color: rgba(26, 93, 64, 0.05);
-            border-radius: 50%;
-            top: -150px;
-            right: -150px;
-            z-index: 0;
-        }
-        
-        .services::after {
-            content: '';
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            background-color: rgba(212, 183, 143, 0.1);
-            border-radius: 50%;
-            bottom: -100px;
-            left: -100px;
-            z-index: 0;
         }
         
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            position: relative;
-            z-index: 1;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
         }
         
         .service-card {
             background-color: white;
-            border-radius: 15px;
+            border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             transition: transform 0.4s, box-shadow 0.4s;
-            position: relative;
-            z-index: 1;
         }
         
         .service-card:hover {
@@ -486,35 +597,22 @@
         }
         
         .service-icon {
-            background-color: var(--primary-color);
-            color: white;
-            font-size: 2.5rem;
             height: 120px;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .service-icon::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
-            top: 0;
-            left: 0;
+            background-color: var(--light-gray);
         }
         
         .service-icon i {
-            position: relative;
-            z-index: 1;
-            transition: transform 0.3s;
+            font-size: 3rem;
+            color: var(--secondary-color);
+            transition: transform 0.3s, color 0.3s;
         }
         
         .service-card:hover .service-icon i {
-            transform: scale(1.2);
+            transform: scale(1.1);
+            color: var(--accent-color);
         }
         
         .service-content {
@@ -522,43 +620,44 @@
         }
         
         .service-content h3 {
-            color: var(--primary-color);
+            color: var(--dark-color);
             margin-bottom: 1rem;
-            font-size: 1.4rem;
-            position: relative;
-            padding-bottom: 0.8rem;
-        }
-        
-        .service-content h3::after {
-            content: '';
-            position: absolute;
-            width: 40px;
-            height: 2px;
-            background-color: var(--secondary-color);
-            bottom: 0;
-            left: 0;
-            transition: width 0.3s;
-        }
-        
-        .service-card:hover .service-content h3::after {
-            width: 60px;
+            font-size: 1.3rem;
+            font-weight: 600;
         }
         
         .service-content p {
-            color: #666;
+            color: var(--medium-gray);
             line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        
+        .service-features {
+            margin-top: 1.5rem;
+        }
+        
+        .service-feature {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.8rem;
+        }
+        
+        .service-feature i {
+            color: var(--accent-color);
+            margin-right: 0.8rem;
+            font-size: 1rem;
+            margin-top: 0.2rem;
         }
         
         /* 特徴 */
         .features {
-            background-color: white;
-            position: relative;
+            background-color: var(--light-gray);
         }
         
         .features-list {
             display: flex;
             flex-wrap: wrap;
-            gap: 2.5rem;
+            gap: 2rem;
             justify-content: center;
         }
         
@@ -566,29 +665,12 @@
             flex: 1;
             min-width: 280px;
             max-width: 350px;
-            text-align: center;
-            padding: 2.5rem 1.5rem;
-            border-radius: 15px;
+            padding: 2.5rem;
+            border-radius: 12px;
             background-color: white;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             transition: transform 0.4s, box-shadow 0.4s;
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
-        }
-        
-        .feature-item::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            bottom: 0;
-            left: 0;
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
-            z-index: -1;
+            text-align: center;
         }
         
         .feature-item:hover {
@@ -596,211 +678,172 @@
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
         }
         
-        .feature-item:hover::before {
-            transform: scaleX(1);
-        }
-        
         .feature-icon {
-            font-size: 3rem;
-            color: var(--primary-color);
+            font-size: 2.5rem;
+            color: var(--secondary-color);
             margin-bottom: 1.5rem;
             display: inline-block;
-            transition: transform 0.4s;
+            transition: transform 0.4s, color 0.3s;
         }
         
         .feature-item:hover .feature-icon {
-            transform: scale(1.2) rotate(10deg);
+            transform: scale(1.1);
             color: var(--accent-color);
         }
         
         .feature-item h3 {
-            color: var(--primary-color);
+            color: var(--dark-color);
             margin-bottom: 1rem;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
+            font-weight: 600;
         }
         
         .feature-item p {
-            color: #666;
+            color: var(--medium-gray);
             line-height: 1.7;
         }
         
-        /* 世界地図セクション */
-        .world-map {
+        /* グローバル展開 */
+        .global {
             background-color: var(--light-color);
-            padding: 5rem 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
+            padding: 6rem 0;
         }
         
-        .world-map-container {
-            position: relative;
-            max-width: 1000px;
-            margin: 0 auto;
+        .global-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            align-items: center;
         }
         
-        .world-map-image {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        .global-text {
+            flex: 1;
+            min-width: 300px;
         }
         
-        .map-point {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background-color: var(--accent-color);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            cursor: pointer;
-            z-index: 2;
-            box-shadow: 0 0 0 5px rgba(230, 126, 34, 0.3);
-            animation: pulse 2s infinite;
+        .global-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--dark-color);
         }
         
-        .map-point::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-color: var(--accent-color);
-            border-radius: 50%;
-            z-index: -1;
-            opacity: 0.5;
-            animation: ripple 2s infinite;
+        .global-description {
+            font-size: 1.1rem;
+            color: var(--medium-gray);
+            line-height: 1.7;
+            margin-bottom: 2rem;
         }
         
-        .map-point:nth-child(2) {
-            top: 40%;
-            left: 20%;
-            animation-delay: 0.5s;
+        .global-regions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
         }
         
-        .map-point:nth-child(3) {
-            top: 30%;
-            left: 80%;
-            animation-delay: 1s;
-        }
-        
-        .map-point:nth-child(4) {
-            top: 70%;
-            left: 70%;
-            animation-delay: 1.5s;
-        }
-        
-        .map-point:nth-child(5) {
-            top: 60%;
-            left: 30%;
-            animation-delay: 2s;
-        }
-        
-        .map-tooltip {
-            position: absolute;
-            background-color: white;
-            padding: 1rem;
-            border-radius: 5px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        .global-region {
+            flex: 1;
             min-width: 200px;
-            transform: translateY(10px);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s;
-            z-index: 3;
         }
         
-        .map-point:hover .map-tooltip {
-            transform: translateY(0);
-            opacity: 1;
-            visibility: visible;
+        .region-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+            display: flex;
+            align-items: center;
         }
         
-        @keyframes pulse {
-            0% {
-                transform: translate(-50%, -50%) scale(1);
-            }
-            50% {
-                transform: translate(-50%, -50%) scale(1.2);
-            }
-            100% {
-                transform: translate(-50%, -50%) scale(1);
-            }
+        .region-name i {
+            color: var(--secondary-color);
+            margin-right: 0.8rem;
+            font-size: 1.5rem;
         }
         
-        @keyframes ripple {
-            0% {
-                transform: scale(1);
-                opacity: 0.5;
-            }
-            100% {
-                transform: scale(2.5);
-                opacity: 0;
-            }
+        .region-details {
+            color: var(--medium-gray);
+            line-height: 1.7;
+        }
+        
+        .global-stats {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        
+        .global-stat {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .global-stat:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .global-stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .global-stat-label {
+            color: var(--medium-gray);
+            font-size: 1rem;
         }
         
         /* お客様の声 */
         .testimonials {
-            background-color: white;
-            padding: 5rem 0;
-            position: relative;
-            overflow: hidden;
+            background-color: var(--light-gray);
+            padding: 6rem 0;
         }
         
-        .testimonials::before {
-            content: '';
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            background-color: rgba(26, 93, 64, 0.03);
-            border-radius: 50%;
-            top: -200px;
-            left: -200px;
-        }
-        
-        .testimonial-slider {
-            max-width: 1000px;
-            margin: 0 auto;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .testimonial-container {
-            display: flex;
-            transition: transform 0.5s ease;
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
         }
         
         .testimonial-item {
-            flex: 0 0 100%;
             background-color: white;
-            padding: 3rem;
-            border-radius: 15px;
+            padding: 2rem;
+            border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            margin: 1rem;
-            transition: all 0.3s;
+            transition: transform 0.4s, box-shadow 0.4s;
         }
         
         .testimonial-item:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
         }
         
         .testimonial-content {
             font-style: italic;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--medium-gray);
+            line-height: 1.7;
             position: relative;
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #555;
         }
         
         .testimonial-content::before {
             content: '"';
-            font-size: 5rem;
+            font-size: 4rem;
             color: var(--secondary-color);
             opacity: 0.2;
             position: absolute;
-            top: -40px;
-            left: -20px;
+            top: -30px;
+            left: -10px;
             font-family: Georgia, serif;
         }
         
@@ -809,77 +852,42 @@
             align-items: center;
         }
         
-        .testimonial-author img {
-            width: 70px;
-            height: 70px;
+        .author-avatar {
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            margin-right: 1.5rem;
-            object-fit: cover;
-            border: 3px solid var(--secondary-color);
+            background-color: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+            font-weight: 600;
         }
         
         .author-info h4 {
             margin: 0;
-            color: var(--primary-color);
-            font-size: 1.2rem;
+            color: var(--dark-color);
+            font-size: 1rem;
+            font-weight: 600;
         }
         
         .author-info p {
             margin: 0.3rem 0 0;
             font-size: 0.9rem;
-            color: #666;
-        }
-        
-        .testimonial-controls {
-            display: flex;
-            justify-content: center;
-            margin-top: 2rem;
-        }
-        
-        .testimonial-btn {
-            background-color: white;
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            margin: 0 0.5rem;
-            transition: all 0.3s;
-        }
-        
-        .testimonial-btn:hover {
-            background-color: var(--primary-color);
-            color: white;
+            color: var(--medium-gray);
         }
         
         /* お問い合わせ */
         .contact {
             background-color: var(--light-color);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .contact::before {
-            content: '';
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background-color: rgba(212, 183, 143, 0.1);
-            border-radius: 50%;
-            bottom: -150px;
-            right: -150px;
         }
         
         .contact-container {
             display: flex;
             flex-wrap: wrap;
             gap: 3rem;
-            position: relative;
-            z-index: 1;
         }
         
         .contact-info {
@@ -887,31 +895,20 @@
             min-width: 300px;
             background-color: white;
             padding: 2.5rem;
-            border-radius: 15px;
+            border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
         }
         
         .contact-info h3 {
-            color: var(--primary-color);
+            color: var(--dark-color);
             margin-bottom: 1.5rem;
             font-size: 1.5rem;
-            position: relative;
-            padding-bottom: 1rem;
-        }
-        
-        .contact-info h3::after {
-            content: '';
-            position: absolute;
-            width: 50px;
-            height: 2px;
-            background-color: var(--secondary-color);
-            bottom: 0;
-            left: 0;
+            font-weight: 600;
         }
         
         .contact-info p {
             margin-bottom: 2rem;
-            color: #555;
+            color: var(--medium-gray);
             line-height: 1.7;
         }
         
@@ -922,7 +919,7 @@
         }
         
         .contact-info-item i {
-            color: var(--primary-color);
+            color: var(--secondary-color);
             margin-right: 1rem;
             font-size: 1.2rem;
             min-width: 20px;
@@ -933,7 +930,7 @@
             min-width: 300px;
             background-color: white;
             padding: 2.5rem;
-            border-radius: 15px;
+            border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
         }
         
@@ -945,21 +942,22 @@
             display: block;
             margin-bottom: 0.8rem;
             font-weight: 500;
-            color: var(--primary-color);
+            color: var(--dark-color);
         }
         
         .form-control {
             width: 100%;
             padding: 1rem;
-            border: 1px solid #ddd;
+            border: 1px solid #e1e1e1;
             border-radius: 8px;
             font-family: inherit;
             transition: border-color 0.3s;
+            background-color: var(--light-gray);
         }
         
         .form-control:focus {
             outline: none;
-            border-color: var(--primary-color);
+            border-color: var(--secondary-color);
         }
         
         textarea.form-control {
@@ -968,42 +966,27 @@
         }
         
         .submit-btn {
-            background-color: var(--primary-color);
+            background-color: var(--secondary-color);
             color: white;
             padding: 1rem 2rem;
             border: none;
-            border-radius: 50px;
-            font-weight: bold;
+            border-radius: 30px;
+            font-weight: 500;
             cursor: pointer;
             transition: all 0.3s;
             display: inline-block;
-            box-shadow: 0 5px 15px rgba(26, 93, 64, 0.3);
         }
         
         .submit-btn:hover {
             background-color: var(--accent-color);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(230, 126, 34, 0.4);
+            transform: translateY(-2px);
         }
         
         /* フッター */
         footer {
-            background-color: var(--primary-color);
+            background-color: var(--dark-color);
             color: white;
             padding: 4rem 0 1rem;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        footer::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: url('https://images.unsplash.com/photo-1596443686812-2f45229eebc3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80') center/cover;
-            opacity: 0.05;
-            top: 0;
-            left: 0;
         }
         
         .footer-content {
@@ -1011,8 +994,6 @@
             flex-wrap: wrap;
             gap: 3rem;
             margin-bottom: 3rem;
-            position: relative;
-            z-index: 1;
         }
         
         .footer-logo {
@@ -1021,14 +1002,15 @@
         }
         
         .footer-logo h2 {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             margin-bottom: 1.5rem;
-            color: var(--secondary-color);
+            font-weight: 600;
         }
         
         .footer-logo p {
-            line-height: 1.8;
+            line-height: 1.7;
             margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
         }
         
         .social-links {
@@ -1051,29 +1033,18 @@
         .social-link:hover {
             background-color: var(--accent-color);
             transform: translateY(-3px);
+            color: white;
         }
         
         .footer-links {
             flex: 1;
-            min-width: 250px;
+            min-width: 200px;
         }
         
         .footer-links h3 {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             margin-bottom: 1.5rem;
-            color: var(--secondary-color);
-            position: relative;
-            padding-bottom: 0.8rem;
-        }
-        
-        .footer-links h3::after {
-            content: '';
-            position: absolute;
-            width: 40px;
-            height: 2px;
-            background-color: var(--accent-color);
-            bottom: 0;
-            left: 0;
+            font-weight: 600;
         }
         
         .footer-links ul {
@@ -1085,55 +1056,41 @@
         }
         
         .footer-links ul li a {
-            color: white;
+            color: rgba(255, 255, 255, 0.7);
             transition: all 0.3s;
-            display: inline-block;
-            position: relative;
-            padding-left: 1.2rem;
-        }
-        
-        .footer-links ul li a::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            transition: transform 0.3s;
         }
         
         .footer-links ul li a:hover {
-            color: var(--secondary-color);
-            transform: translateX(5px);
-        }
-        
-        .footer-links ul li a:hover::before {
-            transform: translateX(3px);
+            color: white;
+            padding-left: 5px;
         }
         
         .copyright {
             text-align: center;
             padding-top: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            z-index: 1;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
         }
         
         /* レスポンシブ対応 */
         @media (max-width: 992px) {
             .hero h2 {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
             
             .section-title h2 {
                 font-size: 2.2rem;
             }
             
-            .highlight-banner h3 {
-                font-size: 1.8rem;
+            .global-stats {
+                margin-top: 2rem;
             }
         }
         
         @media (max-width: 768px) {
             .header-container {
-                padding: 0.8rem;
+                padding: 0.8rem 1.5rem;
             }
             
             .logo h1 {
@@ -1142,11 +1099,13 @@
             
             nav {
                 position: fixed;
-                top: 70px;
+                top: 60px;
                 left: 0;
                 width: 100%;
-                background-color: white;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                background-color: rgba(255, 255, 255, 0.98);
+                backdrop-filter: saturate(180%) blur(20px);
+                -webkit-backdrop-filter: saturate(180%) blur(20px);
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
                 clip-path: circle(0px at top right);
                 transition: clip-path 0.5s ease-in-out;
             }
@@ -1164,7 +1123,7 @@
                 margin: 0;
                 text-align: center;
                 padding: 0.8rem 0;
-                border-bottom: 1px solid #eee;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
             }
             
             nav ul li a::after {
@@ -1176,32 +1135,56 @@
             }
             
             .hero {
-                padding: 6rem 1rem;
+                padding: 6rem 1rem 4rem;
                 margin-top: 60px;
             }
             
             .hero h2 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
             
             .hero p {
                 font-size: 1.1rem;
             }
             
+            .btn {
+                display: block;
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+            }
+            
             .section-title h2 {
                 font-size: 1.8rem;
             }
             
-            .highlight-banner h3 {
-                font-size: 1.5rem;
+            .testimonials-grid {
+                grid-template-columns: 1fr;
             }
             
-            .about-image::before {
-                display: none;
+            .stats-container {
+                grid-template-columns: 1fr;
             }
             
-            .testimonial-item {
-                padding: 2rem;
+            .team-member {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .member-icon {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+            
+            .member-name-title {
+                justify-content: center;
+            }
+            
+            .member-tags {
+                justify-content: center;
             }
         }
         
@@ -1210,22 +1193,18 @@
                 font-size: 1.8rem;
             }
             
-            .hero-stats {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .stat-item {
-                width: 100%;
-            }
-            
             .section-title h2 {
                 font-size: 1.6rem;
             }
             
-            .testimonial-author img {
-                width: 50px;
-                height: 50px;
+            .slide-content {
+                left: 20px;
+                bottom: 20px;
+                max-width: 80%;
+            }
+            
+            .slide-content h3 {
+                font-size: 1.4rem;
             }
         }
     </style>
@@ -1242,9 +1221,10 @@
             <nav id="main-nav">
                 <ul>
                     <li><a href="#about">会社概要</a></li>
+                    <li><a href="#team">私たちのチーム</a></li>
                     <li><a href="#services">サービス</a></li>
                     <li><a href="#features">特徴</a></li>
-                    <li><a href="#world-map">グローバル展開</a></li>
+                    <li><a href="#global">グローバル展開</a></li>
                     <li><a href="#testimonials">お客様の声</a></li>
                     <li><a href="#contact">お問い合わせ</a></li>
                 </ul>
@@ -1255,23 +1235,34 @@
     <!-- ヒーローセクション -->
     <section class="hero">
         <div class="container hero-content">
-            <h2>中小零細企業の越境ECを全力サポート</h2>
-            <p>株式会社pino forestaは、中小零細企業に特化した通関サービスを提供。日本の優れた商品を世界へ届けるお手伝いをします。規模が小さいからこそ実現できる、きめ細やかな伴走型サポートが私たちの強みです。</p>
-            <a href="#contact" class="btn">無料相談はこちら <i class="fas fa-arrow-right"></i></a>
+            <span class="hero-subtitle">中小零細企業専門の通関業者</span>
+            <h2>越境ECで日本の商品を世界へ</h2>
+            <p>株式会社pino forestaは、中小零細企業に特化した通関サービスを提供。少数精鋭だからこそ実現できる、きめ細やかな伴走型サポートで、あなたのビジネスの海外展開を全力でサポートします。</p>
+            <a href="#contact" class="btn">無料相談はこちら</a>
+            <a href="#services" class="btn btn-outline">サービスを見る</a>
             
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <div class="stat-number">100+</div>
-                    <div class="stat-text">サポート企業数</div>
+            <div class="hero-slider">
+                <div class="slider-container" id="slider-container">
+                    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')">
+                        <div class="slide-content">
+                            <h3>中小企業の海外展開をサポート</h3>
+                            <p>規模が小さくても、世界に通用する商品を持つ企業を応援します</p>
+                        </div>
+                    </div>
+                    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2065&q=80')">
+                        <div class="slide-content">
+                            <h3>越境ECに特化した通関サービス</h3>
+                            <p>Amazon、eBay、Etsyなど主要プラットフォームへの出品をサポート</p>
+                        </div>
+                    </div>
+                    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1577412647305-991150c7d163?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')">
+                        <div class="slide-content">
+                            <h3>少数精鋭のプロフェッショナル集団</h3>
+                            <p>一人ひとりのお客様に寄り添った伴走型サポートを提供</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number">30+</div>
-                    <div class="stat-text">輸出対応国</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">95%</div>
-                    <div class="stat-text">顧客満足度</div>
-                </div>
+                <div class="slider-nav" id="slider-nav"></div>
             </div>
         </div>
     </section>
@@ -1280,25 +1271,108 @@
     <div class="highlight-banner">
         <div class="container highlight-content">
             <h3>中小零細企業だからこそ、手厚いサポートを</h3>
-            <p>大手企業向けサービスでは行き届かない、あなたのビジネスに寄り添った伴走型サポートを提供します。</p>
+            <p>大手企業向けサービスでは行き届かない、あなたのビジネスに寄り添った伴走型サポートを提供します。少数精鋭のチームだからこそ、お客様一人ひとりに合わせた柔軟な対応が可能です。通関業務の煩雑さから解放され、本業に集中できる環境を整えます。</p>
+            
+            <div class="highlight-stats">
+                <div class="highlight-stat">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">サポート企業数</div>
+                </div>
+                <div class="highlight-stat">
+                    <div class="stat-number">30+</div>
+                    <div class="stat-label">輸出対応国</div>
+                </div>
+                <div class="highlight-stat">
+                    <div class="stat-number">95%</div>
+                    <div class="stat-label">顧客満足度</div>
+                </div>
+            </div>
         </div>
     </div>
 
     <!-- 会社概要 -->
     <section id="about" class="about">
         <div class="container">
-            <div class="section-title" data-aos="fade-up">
-                <h2>会社概要</h2>
-                <p class="section-subtitle">中小零細企業の海外展開を支援する通関のエキスパート</p>
+            <div class="section-title">
+                <span class="section-subtitle">ABOUT US</span>
+                <h2>中小零細企業の海外展開を支援する通関のエキスパート</h2>
+                <p class="section-description">私たちは、通関業務の複雑さが中小企業の海外展開の障壁となっていることを理解しています</p>
             </div>
             <div class="about-content">
-                <div class="about-text" data-aos="fade-right" data-aos-delay="100">
-                    <p>株式会社pino forestaは、<strong>中小零細企業の越境EC</strong>をサポートする通関業のエキスパートです。大手企業向けのサービスでは行き届かない、きめ細やかなサポートを提供することで、日本の優れた商品を世界に届けるお手伝いをしています。</p>
-                    <p>私たちは、通関業務の複雑さや煩雑さが中小零細企業の海外展開の障壁となっていることを理解しています。そのため、<strong>輸出入の手続きから物流、規制対応まで一貫したサポート</strong>を行い、お客様が本業に集中できる環境を整えます。</p>
-                    <p>「森（foresta）」のように豊かで持続可能なビジネス環境を創造するという理念のもと、中小零細企業の皆様と共に成長し、日本の優れた商品を世界に広げていくことを目指しています。</p>
+                <div class="about-text">
+                    <p>株式会社pino forestaは、<strong>中小零細企業の越境EC</strong>をサポートする通関業のエキスパート集団です。大手企業向けのサービスでは行き届かない、きめ細やかなサポートを提供することで、日本の優れた商品を世界に届けるお手伝いをしています。</p>
+                    <p>私たちは、通関業務の複雑さや煩雑さが中小零細企業の海外展開の障壁となっていることを痛感しています。そのため、<strong>輸出入の手続きから物流、規制対応まで一貫したサポート</strong>を行い、お客様が本業に集中できる環境を整えます。</p>
+                    <p>「森（foresta）」のように豊かで持続可能なビジネス環境を創造するという理念のもと、中小零細企業の皆様と共に成長し、日本の優れた商品を世界に広げていくことを目指しています。少数精鋭のチームだからこそ、お客様一人ひとりに合わせた柔軟な対応が可能です。</p>
+                    <p>大手通関業者では対応が難しい小ロットの輸出入や、個別の商品に合わせた最適な輸出戦略の提案など、中小零細企業ならではのニーズにお応えします。私たちは単なる通関業者ではなく、あなたのビジネスパートナーとして、海外展開の成功に向けて伴走します。</p>
                 </div>
-                <div class="about-image" data-aos="fade-left" data-aos-delay="200">
+                <div class="about-image">
                     <img src="https://images.unsplash.com/photo-1577412647305-991150c7d163?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="株式会社pino forestaのオフィス">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 少数精鋭チーム -->
+    <section id="team" class="team">
+        <div class="container">
+            <div class="section-title">
+                <span class="section-subtitle">OUR TEAM</span>
+                <h2>少数精鋭のプロフェッショナル集団</h2>
+                <p class="section-description">一人ひとりのお客様に寄り添った伴走型サポートを提供します</p>
+            </div>
+            
+            <div class="team-intro">
+                <p>株式会社pino forestaは、通関業務のエキスパート3名による少数精鋭チームです。大手企業とは異なり、担当者が入れ替わることなく、一貫してお客様のビジネスをサポートします。それぞれが専門分野を持ち、チームとして最高のサービスを提供します。</p>
+                <p>少人数だからこそ、意思決定が早く、お客様のニーズに柔軟に対応できることが私たちの強みです。通関業務の専門知識と経験を活かし、中小零細企業の海外展開を全力でサポートします。</p>
+            </div>
+            
+            <div class="team-members">
+                <div class="team-member">
+                    <div class="member-icon">松</div>
+                    <div class="member-info">
+                        <div class="member-name-title">
+                            <h3 class="member-name">松森 亮介</h3>
+                            <p class="member-position">代表取締役 / 通関士</p>
+                        </div>
+                        <p class="member-description">大手物流会社で10年以上の経験を持つ通関のエキスパート。特に北米・欧州向けの輸出に精通し、複雑な規制にも対応可能。</p>
+                        <div class="member-tags">
+                            <span class="member-tag">北米・欧州市場</span>
+                            <span class="member-tag">規制対応</span>
+                            <span class="member-tag">戦略立案</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-icon">平</div>
+                    <div class="member-info">
+                        <div class="member-name-title">
+                            <h3 class="member-name">平野 翔太</h3>
+                            <p class="member-position">取締役 / 物流コンサルタント</p>
+                        </div>
+                        <p class="member-description">越境EC専門の物流コンサルタントとして活躍後、当社に参画。Amazon、eBayなどの主要ECプラットフォームに精通。</p>
+                        <div class="member-tags">
+                            <span class="member-tag">越境ECプラットフォーム</span>
+                            <span class="member-tag">物流最適化</span>
+                            <span class="member-tag">コスト削減</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-icon">宇</div>
+                    <div class="member-info">
+                        <div class="member-name-title">
+                            <h3 class="member-name">宇川 和樹</h3>
+                            <p class="member-position">マーケティング責任者</p>
+                        </div>
+                        <p class="member-description">アジア市場を中心に海外マーケティングの経験が豊富。現地の商習慣や市場特性に精通し、多言語対応も可能。</p>
+                        <div class="member-tags">
+                            <span class="member-tag">アジア市場</span>
+                            <span class="member-tag">マーケティング</span>
+                            <span class="member-tag">多言語対応</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1307,45 +1381,124 @@
     <!-- サービス -->
     <section id="services" class="services">
         <div class="container">
-            <div class="section-title" data-aos="fade-up">
-                <h2>サービス内容</h2>
-                <p class="section-subtitle">中小零細企業の越境ECに特化したサービスをご提供します</p>
+            <div class="section-title">
+                <span class="section-subtitle">SERVICES</span>
+                <h2>中小零細企業の越境ECに特化したサービス</h2>
+                <p class="section-description">規模が小さいからこそ必要な、きめ細やかなサポートを提供します</p>
             </div>
             <div class="services-grid">
-                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-globe-asia"></i>
                     </div>
                     <div class="service-content">
                         <h3>越境EC専門通関サポート</h3>
-                        <p>日本の商品を海外に販売するための越境ECに特化した通関サービスを提供します。Amazon、eBay、Etsyなどの主要プラットフォームへの出品に必要な手続きをサポートします。</p>
+                        <p>日本の商品を海外に販売するための越境ECに特化した通関サービスを提供します。Amazon、eBay、Etsyなどの主要プラットフォームへの出品に必要な手続きをワンストップでサポートします。</p>
+                        <div class="service-features">
+                            <div class="service-feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>各ECプラットフォームの規定に合わせた書類作成</span>
+                            </div>
+                            <div class="service-feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>商品カテゴリに応じた最適な輸出方法の提案</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-box"></i>
                     </div>
                     <div class="service-content">
                         <h3>小口輸出特化サービス</h3>
                         <p>中小零細企業や個人事業主の方向けに、小ロットからの輸出に対応した通関サービスを提供。コストを抑えながら効率的に海外展開をサポートします。</p>
+                        <div class="service-features">
+                            <div class="service-feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>少量多品種の商品でも対応可能</span>
+                            </div>
+                            <div class="service-feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>複数国への小口配送の最適化</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-search"></i>
                     </div>
                     <div class="service-content">
                         <h3>規制対応コンサルティング</h3>
                         <p>各国の輸入規制や関税に関する最新情報を提供し、商品ごとに最適な輸出戦略をアドバイス。法令違反のリスクを最小限に抑え、スムーズな海外展開を実現します。</p>
+                        <div class="service-features">
+                            <div class="service-feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>商品別の輸入規制調査</span>
+                            </div>
+                            <div class="service-feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>各国の関税率・税制の解説</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-hands-helping"></i>
                     </div>
                     <div class="service-content">
                         <h3>伴走型海外展開支援</h3>
                         <p>通関業務だけでなく、海外マーケティングや現地パートナー紹介など、海外展開に必要な総合的なサポートを提供。中小零細企業の皆様の海外ビジネスを成功に導きます。</p>
+                        <div class="service-features">
+                            <div class="service-feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>海外向け商品ページの作成アドバイス</span>
+                            </div>
+                            <div class="service-feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>現地パートナー・代理店の紹介</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>多言語対応サービス</h3>
+                        <p>商品説明や取扱説明書の翻訳、海外顧客とのコミュニケーションサポートなど、言語の壁を越えるためのサービスを提供。スムーズな海外取引をサポートします。</p>
+                        <div class="service-features">
+                            <div class="service-feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>商品説明・マニュアルの多言語翻訳</span>
+                            </div>
+                            <div class="service-feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>海外顧客対応の代行サービス</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>海外市場分析サービス</h3>
+                        <p>各国の市場動向や競合分析、ターゲット顧客の調査など、データに基づいた海外展開戦略の立案をサポート。効果的なマーケティング施策を提案します。</p>
+                        <div class="service-features">
+                            <div class="service-feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>国別市場調査レポートの提供</span>
+                            </div>
+                            <div class="service-feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>競合分析と差別化戦略の提案</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1355,73 +1508,97 @@
     <!-- 特徴 -->
     <section id="features" class="features">
         <div class="container">
-            <div class="section-title" data-aos="fade-up">
+            <div class="section-title">
+                <span class="section-subtitle">FEATURES</span>
                 <h2>私たちの強み</h2>
-                <p class="section-subtitle">中小零細企業に特化しているからこそできる、きめ細やかなサポート</p>
+                <p class="section-description">中小零細企業に特化しているからこそできる、きめ細やかなサポート</p>
             </div>
             <div class="features-list">
-                <div class="feature-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="feature-item">
                     <div class="feature-icon">
                         <i class="fas fa-users"></i>
                     </div>
                     <h3>中小零細企業専門</h3>
-                    <p>大手企業向けサービスとは異なり、中小零細企業の規模やニーズに合わせたサポート体制を構築。コストパフォーマンスの高いサービスを提供します。</p>
+                    <p>大手企業向けサービスとは異なり、中小零細企業の規模やニーズに合わせたサポート体制を構築。コストパフォーマンスの高いサービスを提供します。少量多品種の商品でも柔軟に対応し、初期投資を抑えた海外展開を実現します。</p>
                 </div>
-                <div class="feature-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="feature-item">
                     <div class="feature-icon">
                         <i class="fas fa-handshake"></i>
                     </div>
                     <h3>手厚い伴走サポート</h3>
-                    <p>担当者が一貫してサポートする伴走型のサービス提供。初めての海外展開でも安心して取り組めるよう、丁寧にガイドします。</p>
+                    <p>少数精鋭だからこそ可能な、担当者が一貫してサポートする伴走型のサービス提供。初めての海外展開でも安心して取り組めるよう、丁寧にガイドします。お客様のビジネスを深く理解し、長期的なパートナーシップを築きます。</p>
                 </div>
-                <div class="feature-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="feature-item">
                     <div class="feature-icon">
                         <i class="fas fa-rocket"></i>
                     </div>
                     <h3>越境EC特化ノウハウ</h3>
-                    <p>越境ECに特化した専門知識と経験を活かし、効率的かつ効果的な海外展開戦略を提案。日本の商品を世界に届けるための最適な方法をご提案します。</p>
+                    <p>越境ECに特化した専門知識と経験を活かし、効率的かつ効果的な海外展開戦略を提案。日本の商品を世界に届けるための最適な方法をご提案します。各国の市場特性や消費者傾向を踏まえた、実践的なアドバイスが可能です。</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 世界地図セクション -->
-    <section id="world-map" class="world-map">
+    <!-- グローバル展開 -->
+    <section id="global" class="global">
         <div class="container">
-            <div class="section-title" data-aos="fade-up">
-                <h2>グローバル展開</h2>
-                <p class="section-subtitle">日本の優れた商品を世界各国へ</p>
+            <div class="section-title">
+                <span class="section-subtitle">GLOBAL NETWORK</span>
+                <h2>世界へ広がるネットワーク</h2>
+                <p class="section-description">日本の優れた商品を世界各国へお届けします</p>
             </div>
-            <div class="world-map-container" data-aos="zoom-in">
-                <img src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2033&q=80" alt="世界地図" class="world-map-image">
-                <div class="map-point" style="top: 35%; left: 50%;">
-                    <div class="map-tooltip">
-                        <h4>日本</h4>
-                        <p>本社所在地。日本全国の中小企業をサポート</p>
+            
+            <div class="global-content">
+                <div class="global-text">
+                    <h3 class="global-title">30カ国以上への輸出実績</h3>
+                    <p class="global-description">株式会社pino forestaは、北米、欧州、アジア、オセアニアなど、世界30カ国以上への輸出をサポートしています。各地域の輸入規制や市場特性に精通したスタッフが、最適な輸出戦略をご提案します。</p>
+                    
+                    <div class="global-regions">
+                        <div class="global-region">
+                            <h4 class="region-name"><i class="fas fa-globe-americas"></i>北米</h4>
+                            <p class="region-details">アメリカ、カナダを中心に、Amazon.comなどの主要ECプラットフォームへの出品をサポート。FBA（フルフィルメント by Amazon）対応の輸出も得意としています。</p>
+                        </div>
+                        
+                        <div class="global-region">
+                            <h4 class="region-name"><i class="fas fa-globe-europe"></i>欧州</h4>
+                            <p class="region-details">EU圏内の複雑な規制にも対応した輸出サポート。イギリス、フランス、ドイツなど主要国への輸出実績多数。CEマーキングなどの認証取得もサポートします。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="global-regions">
+                        <div class="global-region">
+                            <h4 class="region-name"><i class="fas fa-globe-asia"></i>アジア</h4>
+                            <p class="region-details">中国、韓国、台湾、東南アジア諸国への輸出をサポート。現地の商習慣や規制に精通したスタッフが、スムーズな輸出をお手伝いします。</p>
+                        </div>
+                        
+                        <div class="global-region">
+                            <h4 class="region-name"><i class="fas fa-globe"></i>オセアニア</h4>
+                            <p class="region-details">オーストラリア、ニュージーランドへの輸出実績多数。厳しい検疫制度にも対応した輸出サポートを提供します。</p>
+                        </div>
                     </div>
                 </div>
-                <div class="map-point">
-                    <div class="map-tooltip">
-                        <h4>北米</h4>
-                        <p>Amazon.comを中心に多数の日本企業の出店をサポート</p>
-                    </div>
-                </div>
-                <div class="map-point">
-                    <div class="map-tooltip">
-                        <h4>アジア</h4>
-                        <p>中国、韓国、台湾、東南アジアへの輸出をサポート</p>
-                    </div>
-                </div>
-                <div class="map-point">
-                    <div class="map-tooltip">
-                        <h4>オセアニア</h4>
-                        <p>オーストラリア、ニュージーランドへの輸出実績多数</p>
-                    </div>
-                </div>
-                <div class="map-point">
-                    <div class="map-tooltip">
-                        <h4>ヨーロッパ</h4>
-                        <p>EU圏内の複雑な規制にも対応した輸出サポート</p>
+                
+                <div class="global-stats">
+                    <div class="stats-container">
+                        <div class="global-stat">
+                            <div class="global-stat-number">30+</div>
+                            <div class="global-stat-label">輸出対応国</div>
+                        </div>
+                        
+                        <div class="global-stat">
+                            <div class="global-stat-number">5,000+</div>
+                            <div class="global-stat-label">年間輸出件数</div>
+                        </div>
+                        
+                        <div class="global-stat">
+                            <div class="global-stat-number">15+</div>
+                            <div class="global-stat-label">ECプラットフォーム対応</div>
+                        </div>
+                        
+                        <div class="global-stat">
+                            <div class="global-stat-number">99.8%</div>
+                            <div class="global-stat-label">書類審査合格率</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1431,56 +1608,83 @@
     <!-- お客様の声 -->
     <section id="testimonials" class="testimonials">
         <div class="container">
-            <div class="section-title" data-aos="fade-up">
+            <div class="section-title">
+                <span class="section-subtitle">TESTIMONIALS</span>
                 <h2>お客様の声</h2>
-                <p class="section-subtitle">実際にサービスをご利用いただいたお客様からの声</p>
+                <p class="section-description">実際にサービスをご利用いただいたお客様からの声</p>
             </div>
-            <div class="testimonial-slider" data-aos="fade-up" data-aos-delay="100">
-                <div class="testimonial-container" id="testimonial-container">
-                    <div class="testimonial-item">
-                        <div class="testimonial-content">
-                            <p>初めての海外販売で不安でしたが、pino forestaさんの丁寧なサポートのおかげで、スムーズに越境ECをスタートできました。担当者の方が常に寄り添ってくださり、質問にも迅速に対応していただけるので安心です。おかげで海外からの注文が増え、売上も伸びています。</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="お客様の写真">
-                            <div class="author-info">
-                                <h4>山田 健太郎様</h4>
-                                <p>手作り雑貨メーカー 代表</p>
-                            </div>
-                        </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <p>初めての海外販売で不安でしたが、pino forestaさんの丁寧なサポートのおかげで、スムーズに越境ECをスタートできました。担当者の方が常に寄り添ってくださり、質問にも迅速に対応していただけるので安心です。少数精鋭のチームだからこそ、一貫した対応が受けられるのが本当に助かります。</p>
                     </div>
-                    <div class="testimonial-item">
-                        <div class="testimonial-content">
-                            <p>大手の通関業者では対応してもらえなかった小ロットの輸出も、pino forestaさんなら柔軟に対応してくれます。中小企業の目線に立ったサービスが本当に助かっています。おかげで海外売上が前年比150%に成長しました。これからも長くお付き合いさせていただきたいと思います。</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=776&q=80" alt="お客様の写真">
-                            <div class="author-info">
-                                <h4>佐藤 美香様</h4>
-                                <p>オーガニック食品販売 経営者</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-item">
-                        <div class="testimonial-content">
-                            <p>越境ECの知識がほとんどなかった私たちでも、pino forestaさんの伴走サポートのおかげで、今では5カ国に商品を輸出できるようになりました。各国の規制や税関手続きなど、専門的なことをすべて任せられるので、本業に集中できています。本当に感謝しています。</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="お客様の写真">
-                            <div class="author-info">
-                                <h4>田中 誠一様</h4>
-                                <p>伝統工芸品製造 社長</p>
-                            </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">Y</div>
+                        <div class="author-info">
+                            <h4>Y.K様</h4>
+                            <p>H社（手作り雑貨）</p>
                         </div>
                     </div>
                 </div>
-                <div class="testimonial-controls">
-                    <button class="testimonial-btn" id="prev-testimonial">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button class="testimonial-btn" id="next-testimonial">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <p>大手の通関業者では対応してもらえなかった小ロットの輸出も、pino forestaさんなら柔軟に対応してくれます。中小企業の目線に立ったサービスが本当に助かっています。おかげで海外売上が前年比150%に成長しました。少人数体制でも、スピード感のある対応が素晴らしいです。</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">S</div>
+                        <div class="author-info">
+                            <h4>S.M様</h4>
+                            <p>O社（オーガニック食品）</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <p>越境ECの知識がほとんどなかった私たちでも、pino forestaさんの伴走サポートのおかげで、今では5カ国に商品を輸出できるようになりました。各国の規制や税関手続きなど、専門的なことをすべて任せられるので助かっています。担当者の方々の専門知識の深さには本当に感謝しています。</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">T</div>
+                        <div class="author-info">
+                            <h4>T.S様</h4>
+                            <p>K社（伝統工芸品）</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <p>小規模事業者にとって海外展開は大きな挑戦でしたが、pino forestaさんのおかげで実現できました。特に各国の輸入規制に関する詳細なアドバイスが非常に役立ちました。今では月間売上の30%が海外からの注文です。少数精鋭のチームだからこそ、細かい配慮が行き届いていると感じます。</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">N</div>
+                        <div class="author-info">
+                            <h4>N.R様</h4>
+                            <p>M社（アパレル）</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <p>多言語対応サービスが非常に役立っています。商品説明の翻訳から海外顧客とのやり取りまでサポートしていただき、言葉の壁を感じることなく海外展開ができています。松森さんをはじめとするチームの皆さんの丁寧な対応に感謝しています。</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">K</div>
+                        <div class="author-info">
+                            <h4>K.T様</h4>
+                            <p>B社（美容製品）</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <p>海外市場分析サービスを利用して、ターゲット国を絞り込んだ結果、効率的な海外展開ができました。データに基づいた戦略提案は非常に説得力があり、社内での意思決定もスムーズに進みました。少数精鋭だからこそのスピード感と専門性の高さを実感しています。</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">H</div>
+                        <div class="author-info">
+                            <h4>H.M様</h4>
+                            <p>T社（家電製品）</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1489,14 +1693,15 @@
     <!-- お問い合わせ -->
     <section id="contact" class="contact">
         <div class="container">
-            <div class="section-title" data-aos="fade-up">
+            <div class="section-title">
+                <span class="section-subtitle">CONTACT</span>
                 <h2>お問い合わせ</h2>
-                <p class="section-subtitle">中小零細企業の海外展開に関するご相談を無料で承ります</p>
+                <p class="section-description">中小零細企業の海外展開に関するご相談を無料で承ります</p>
             </div>
             <div class="contact-container">
-                <div class="contact-info" data-aos="fade-right" data-aos-delay="100">
+                <div class="contact-info">
                     <h3>中小零細企業の海外展開、お気軽にご相談ください</h3>
-                    <p>越境ECや輸出入に関するお悩み、ご質問など、どんなことでもお気軽にお問い合わせください。初回相談は無料で承ります。</p>
+                    <p>越境ECや輸出入に関するお悩み、ご質問など、どんなことでもお気軽にお問い合わせください。初回相談は無料で承ります。少数精鋭のチームだからこそ、スピーディーかつ柔軟な対応が可能です。</p>
                     <div class="contact-info-item">
                         <i class="fas fa-map-marker-alt"></i>
                         <span>〒123-4567 東京都港区海岸1-2-3 ピノビル5階</span>
@@ -1514,7 +1719,7 @@
                         <span>営業時間: 平日 9:00〜18:00</span>
                     </div>
                 </div>
-                <div class="contact-form" data-aos="fade-left" data-aos-delay="200">
+                <div class="contact-form">
                     <form id="contactForm">
                         <div class="form-group">
                             <label for="name">お名前</label>
@@ -1527,21 +1732,6 @@
                         <div class="form-group">
                             <label for="email">メールアドレス</label>
                             <input type="email" id="email" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">電話番号</label>
-                            <input type="tel" id="phone" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="service">ご興味のあるサービス</label>
-                            <select id="service" class="form-control">
-                                <option value="">選択してください</option>
-                                <option value="越境EC">越境EC専門通関サポート</option>
-                                <option value="小口輸出">小口輸出特化サービス</option>
-                                <option value="規制対応">規制対応コンサルティング</option>
-                                <option value="海外展開">伴走型海外展開支援</option>
-                                <option value="その他">その他</option>
-                            </select>
                         </div>
                         <div class="form-group">
                             <label for="message">お問い合わせ内容</label>
@@ -1560,7 +1750,7 @@
             <div class="footer-content">
                 <div class="footer-logo">
                     <h2>株式会社pino foresta</h2>
-                    <p>中小零細企業の越境ECを全力サポート。日本の優れた商品を世界へ。私たちは、中小零細企業の皆様の海外展開を通関業務の側面からサポートし、グローバルビジネスの成功に貢献します。</p>
+                    <p>中小零細企業の越境ECを全力サポート。日本の優れた商品を世界へ。私たちは、中小零細企業の皆様の海外展開を通関業務の側面からサポートし、グローバルビジネスの成功に貢献します。少数精鋭だからこそできる、きめ細やかなサービスをご提供します。</p>
                     <div class="social-links">
                         <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
@@ -1572,9 +1762,10 @@
                     <h3>リンク</h3>
                     <ul>
                         <li><a href="#about">会社概要</a></li>
+                        <li><a href="#team">私たちのチーム</a></li>
                         <li><a href="#services">サービス</a></li>
                         <li><a href="#features">特徴</a></li>
-                        <li><a href="#world-map">グローバル展開</a></li>
+                        <li><a href="#global">グローバル展開</a></li>
                         <li><a href="#testimonials">お客様の声</a></li>
                         <li><a href="#contact">お問い合わせ</a></li>
                     </ul>
@@ -1586,6 +1777,8 @@
                         <li><a href="#services">小口輸出特化サービス</a></li>
                         <li><a href="#services">規制対応コンサルティング</a></li>
                         <li><a href="#services">伴走型海外展開支援</a></li>
+                        <li><a href="#services">多言語対応サービス</a></li>
+                        <li><a href="#services">海外市場分析サービス</a></li>
                     </ul>
                 </div>
             </div>
@@ -1596,16 +1789,7 @@
     </footer>
 
     <!-- スクリプト -->
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        // AOSアニメーション初期化
-        AOS.init({
-            duration: 800,
-            easing: 'ease',
-            once: true,
-            offset: 100
-        });
-        
         // ヘッダースクロール効果
         window.addEventListener('scroll', function() {
             const header = document.getElementById('header');
@@ -1647,49 +1831,58 @@
             });
         });
         
-        // お客様の声スライダー
-        const testimonialContainer = document.getElementById('testimonial-container');
-        const prevBtn = document.getElementById('prev-testimonial');
-        const nextBtn = document.getElementById('next-testimonial');
+        // スライダー機能
+        const sliderContainer = document.getElementById('slider-container');
+        const sliderNav = document.getElementById('slider-nav');
+        const slides = sliderContainer.children;
         let currentSlide = 0;
-        const slides = testimonialContainer.children;
-        const totalSlides = slides.length;
         
-        function showSlide(index) {
-            if (index < 0) {
-                currentSlide = totalSlides - 1;
-            } else if (index >= totalSlides) {
-                currentSlide = 0;
-            } else {
-                currentSlide = index;
-            }
-            
-            testimonialContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+        // スライダーのドットナビゲーションを作成
+        for (let i = 0; i < slides.length; i++) {
+            const dot = document.createElement('div');
+            dot.classList.add('slider-dot');
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => {
+                goToSlide(i);
+            });
+            sliderNav.appendChild(dot);
         }
         
-        prevBtn.addEventListener('click', () => {
-            showSlide(currentSlide - 1);
-        });
-        
-        nextBtn.addEventListener('click', () => {
-            showSlide(currentSlide + 1);
-        });
+        // スライドを切り替える関数
+        function goToSlide(n) {
+            sliderContainer.style.transform = `translateX(-${n * 100}%)`;
+            
+            // アクティブなドットを更新
+            document.querySelectorAll('.slider-dot').forEach((dot, index) => {
+                if (index === n) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+            
+            currentSlide = n;
+        }
         
         // 自動スライド
-        let slideInterval = setInterval(() => {
-            showSlide(currentSlide + 1);
-        }, 5000);
+        function nextSlide() {
+            let next = currentSlide + 1;
+            if (next >= slides.length) next = 0;
+            goToSlide(next);
+        }
+        
+        // 5秒ごとに次のスライドへ
+        let slideInterval = setInterval(nextSlide, 5000);
         
         // スライダーにマウスが乗ったら自動スライドを停止
-        testimonialContainer.addEventListener('mouseenter', () => {
+        const heroSlider = document.querySelector('.hero-slider');
+        heroSlider.addEventListener('mouseenter', () => {
             clearInterval(slideInterval);
         });
         
         // スライダーからマウスが離れたら自動スライドを再開
-        testimonialContainer.addEventListener('mouseleave', () => {
-            slideInterval = setInterval(() => {
-                showSlide(currentSlide + 1);
-            }, 5000);
+        heroSlider.addEventListener('mouseleave', () => {
+            slideInterval = setInterval(nextSlide, 5000);
         });
         
         // お問い合わせフォームの送信処理
@@ -1704,8 +1897,6 @@
                 name: document.getElementById('name').value,
                 company: document.getElementById('company').value,
                 email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                service: document.getElementById('service').value,
                 message: document.getElementById('message').value
             };
             
@@ -1713,6 +1904,31 @@
             alert('お問い合わせありがとうございます。担当者より折り返しご連絡いたします。');
             contactForm.reset();
         });
+        
+        // 要素が画面内に入ったときのアニメーション
+        const animateOnScroll = function() {
+            const elements = document.querySelectorAll('.section-title, .about-text, .about-image, .service-card, .feature-item, .team-member, .global-text, .global-stats, .testimonial-item, .contact-info, .contact-form');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementPosition < windowHeight - 100) {
+                    element.style.opacity = '0';
+                    element.style.transform = 'translateY(30px)';
+                    element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                    
+                    setTimeout(() => {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }, 100);
+                }
+            });
+        };
+        
+        // 初期ロード時とスクロール時にアニメーションを実行
+        window.addEventListener('load', animateOnScroll);
+        window.addEventListener('scroll', animateOnScroll);
     </script>
 </body>
 </html>
