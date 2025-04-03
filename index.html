@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>株式会社pino foresta - 中小零細企業の越境ECをサポート</title>
+    <style>
+        :root {
+            --primary-color: #1a5d40;
+            --secondary-color: #d4b78f;
+            --light-color: #f5f5f0;
+            --dark-color: #333333;
+            --spacing: 2rem;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: var(--light-color);
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        /* ヘッダー */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo h1 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-left: 0.5rem;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+        
+        /* ヒーローセクション */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/placeholder.svg?height=800&width=1200');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 8rem 1rem;
+            margin-top: 70px;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #124530;
+        }
+        
+        /* セクション共通 */
+        section {
+            padding: var(--spacing) 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            margin: 0.5rem auto 0;
+        }
+        
+        /* 会社概要 */
+        .about {
+            background-color: white;
+        }
+        
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+        
+        .about-image img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* サービス */
+        .services {
+            background-color: var(--light-color);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-icon {
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 2rem;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .service-content {
+            padding: 1.5rem;
+        }
+        
+        .service-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        /* 特徴 */
+        .features {
+            background-color: white;
+        }
+        
+        .features-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+        
+        .feature-item {
+            flex: 1;
+            min-width: 250px;
+            max-width: 350px;
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 8px;
+            background-color: var(--light-color);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        /* お客様の声 */
+        .testimonials {
+            background-color: var(--light-color);
+            padding: 4rem 0;
+        }
+        
+        .testimonial-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .testimonial-item {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+        
+        .testimonial-content {
+            font-style: italic;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        
+        .testimonial-content::before {
+            content: '"';
+            font-size: 3rem;
+            color: var(--secondary-color);
+            opacity: 0.3;
+            position: absolute;
+            top: -20px;
+            left: -15px;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .testimonial-author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 1rem;
+        }
+        
+        .author-info h4 {
+            margin: 0;
+            color: var(--primary-color);
+        }
+        
+        .author-info p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        /* お問い合わせ */
+        .contact {
+            background-color: var(--light-color);
+        }
+        
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .contact-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .contact-info p {
+            margin-bottom: 1rem;
+        }
+        
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-info-item i {
+            color: var(--primary-color);
+            margin-right: 0.5rem;
+            min-width: 20px;
+        }
+        
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* フッター */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-logo {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-logo h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-links h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links ul li a {
+            color: white;
+            transition: color 0.3s;
+        }
+        
+        .footer-links ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* ハイライトバナー */
+        .highlight-banner {
+            background-color: var(--secondary-color);
+            color: var(--dark-color);
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .highlight-banner h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .highlight-banner p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-weight: 500;
+        }
+        
+        /* レスポンシブ対応 */
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0.8rem;
+            }
+            
+            .logo h1 {
+                font-size: 1.2rem;
+            }
+            
+            nav {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                clip-path: circle(0px at top right);
+                transition: clip-path 0.5s ease-in-out;
+            }
+            
+            nav.active {
+                clip-path: circle(1500px at top right);
+            }
+            
+            nav ul {
+                flex-direction: column;
+                padding: 1rem 0;
+            }
+            
+            nav ul li {
+                margin: 0;
+                text-align: center;
+                padding: 0.8rem 0;
+                border-bottom: 1px solid #eee;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero {
+                padding: 6rem 1rem;
+                margin-top: 60px;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon">P</div>
+                <h1>株式会社pino foresta</h1>
+            </div>
+            <button class="mobile-menu-btn" aria-label="メニューを開く">☰</button>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="#about">会社概要</a></li>
+                    <li><a href="#services">サービス</a></li>
+                    <li><a href="#features">特徴</a></li>
+                    <li><a href="#testimonials">お客様の声</a></li>
+                    <li><a href="#contact">お問い合わせ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ヒーローセクション -->
+    <section class="hero">
+        <div class="container">
+            <h2>中小零細企業の越境ECを全力サポート</h2>
+            <p>株式会社pino forestaは、中小零細企業に特化した通関サービスを提供。日本の優れた商品を世界へ届けるお手伝いをします。規模が小さいからこそ実現できる、きめ細やかな伴走型サポートが私たちの強みです。</p>
+            <a href="#contact" class="btn">無料相談はこちら</a>
+        </div>
+    </section>
+
+    <!-- ハイライトバナー -->
+    <div class="highlight-banner">
+        <div class="container">
+            <h3>中小零細企業だからこそ、手厚いサポートを</h3>
+            <p>大手企業向けサービスでは行き届かない、あなたのビジネスに寄り添った伴走型サポートを提供します。</p>
+        </div>
+    </div>
+
+    <!-- 会社概要 -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>会社概要</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>株式会社pino forestaは、<strong>中小零細企業の越境EC</strong>をサポートする通関業のエキスパートです。大手企業向けのサービスでは行き届かない、きめ細やかなサポートを提供することで、日本の優れた商品を世界に届けるお手伝いをしています。</p>
+                    <p>私たちは、通関業務の複雑さや煩雑さが中小零細企業の海外展開の障壁となっていることを理解しています。そのため、<strong>輸出入の手続きから物流、規制対応まで一貫したサポート</strong>を行い、お客様が本業に集中できる環境を整えます。</p>
+                    <p>「森（foresta）」のように豊かで持続可能なビジネス環境を創造するという理念のもと、中小零細企業の皆様と共に成長し、日本の優れた商品を世界に広げていくことを目指しています。</p>
+                </div>
+                <div class="about-image">
+                    <img src="/placeholder.svg?height=400&width=600" alt="株式会社pino forestaのオフィス">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- サービス -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>サービス内容</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🌏</div>
+                    <div class="service-content">
+                        <h3>越境EC専門通関サポート</h3>
+                        <p>日本の商品を海外に販売するための越境ECに特化した通関サービスを提供します。Amazon、eBay、Etsyなどの主要プラットフォームへの出品に必要な手続きをサポートします。</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📦</div>
+                    <div class="service-content">
+                        <h3>小口輸出特化サービス</h3>
+                        <p>中小零細企業や個人事業主の方向けに、小ロットからの輸出に対応した通関サービスを提供。コストを抑えながら効率的に海外展開をサポートします。</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔍</div>
+                    <div class="service-content">
+                        <h3>規制対応コンサルティング</h3>
+                        <p>各国の輸入規制や関税に関する最新情報を提供し、商品ごとに最適な輸出戦略をアドバイス。法令違反のリスクを最小限に抑え、スムーズな海外展開を実現します。</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📋</div>
+                    <div class="service-content">
+                        <h3>伴走型海外展開支援</h3>
+                        <p>通関業務だけでなく、海外マーケティングや現地パートナー紹介など、海外展開に必要な総合的なサポートを提供。中小零細企業の皆様の海外ビジネスを成功に導きます。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 特徴 -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>私たちの強み</h2>
+            </div>
+            <div class="features-list">
+                <div class="feature-item">
+                    <div class="feature-icon">👥</div>
+                    <h3>中小零細企業専門</h3>
+                    <p>大手企業向けサービスとは異なり、中小零細企業の規模やニーズに合わせたサポート体制を構築。コストパフォーマンスの高いサービスを提供します。</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🤝</div>
+                    <h3>手厚い伴走サポート</h3>
+                    <p>担当者が一貫してサポートする伴走型のサービス提供。初めての海外展開でも安心して取り組めるよう、丁寧にガイドします。</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🚀</div>
+                    <h3>越境EC特化ノウハウ</h3>
+                    <p>越境ECに特化した専門知識と経験を活かし、効率的かつ効果的な海外展開戦略を提案。日本の商品を世界に届けるための最適な方法をご提案します。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- お客様の声 -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>お客様の声</h2>
+            </div>
+            <div class="testimonial-container">
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <p>初めての海外販売で不安でしたが、pino forestaさんの丁寧なサポートのおかげで、スムーズに越境ECをスタートできました。担当者の方が常に寄り添ってくださり、質問にも迅速に対応していただけるので安心です。</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="/placeholder.svg?height=100&width=100" alt="お客様の写真">
+                        <div class="author-info">
+                            <h4>山田 健太郎様</h4>
+                            <p>手作り雑貨メーカー 代表</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <p>大手の通関業者では対応してもらえなかった小ロットの輸出も、pino forestaさんなら柔軟に対応してくれます。中小企業の目線に立ったサービスが本当に助かっています。おかげで海外売上が前年比150%に成長しました。</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="/placeholder.svg?height=100&width=100" alt="お客様の写真">
+                        <div class="author-info">
+                            <h4>佐藤 美香様</h4>
+                            <p>オーガニック食品販売 経営者</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- お問い合わせ -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>お問い合わせ</h2>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>中小零細企業の海外展開、お気軽にご相談ください</h3>
+                    <p>越境ECや輸出入に関するお悩み、ご質問など、どんなことでもお気軽にお問い合わせください。初回相談は無料で承ります。</p>
+                    <div class="contact-info-item">
+                        <i>📍</i>
+                        <span>〒123-4567 東京都港区海岸1-2-3 ピノビル5階</span>
+                    </div>
+                    <div class="contact-info-item">
+                        <i>📞</i>
+                        <span>03-1234-5678</span>
+                    </div>
+                    <div class="contact-info-item">
+                        <i>📧</i>
+                        <span>info@pinoforesta.co.jp</span>
+                    </div>
+                    <div class="contact-info-item">
+                        <i>🕒</i>
+                        <span>営業時間: 平日 9:00〜18:00</span>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">お名前</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="company">会社名</label>
+                            <input type="text" id="company" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">メールアドレス</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">電話番号</label>
+                            <input type="tel" id="phone" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="service">ご興味のあるサービス</label>
+                            <select id="service" class="form-control">
+                                <option value="">選択してください</option>
+                                <option value="越境EC">越境EC専門通関サポート</option>
+                                <option value="小口輸出">小口輸出特化サービス</option>
+                                <option value="規制対応">規制対応コンサルティング</option>
+                                <option value="海外展開">伴走型海外展開支援</option>
+                                <option value="その他">その他</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">お問い合わせ内容</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">無料相談を申し込む</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>株式会社pino foresta</h2>
+                    <p>中小零細企業の越境ECを全力サポート。日本の優れた商品を世界へ。</p>
+                </div>
+                <div class="footer-links">
+                    <h3>リンク</h3>
+                    <ul>
+                        <li><a href="#about">会社概要</a></li>
+                        <li><a href="#services">サービス</a></li>
+                        <li><a href="#features">特徴</a></li>
+                        <li><a href="#testimonials">お客様の声</a></li>
+                        <li><a href="#contact">お問い合わせ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 株式会社pino foresta. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // モバイルメニューの切り替え
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mainNav = document.getElementById('main-nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            mobileMenuBtn.textContent = mainNav.classList.contains('active') ? '✕' : '☰';
+        });
+        
+        // ナビゲーションリンクのスムーススクロール
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                if (mainNav.classList.contains('active')) {
+                    mainNav.classList.remove('active');
+                    mobileMenuBtn.textContent = '☰';
+                }
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // お問い合わせフォームの送信処理
+        const contactForm = document.getElementById('contactForm');
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // ここに実際のフォーム送信処理を追加
+            // 例: フォームデータの取得と送信
+            const formData = {
+                name: document.getElementById('name').value,
+                company: document.getElementById('company').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                service: document.getElementById('service').value,
+                message: document.getElementById('message').value
+            };
+            
+            // 送信成功時の処理（実際の実装では、APIへの送信処理などを行う）
+            alert('お問い合わせありがとうございます。担当者より折り返しご連絡いたします。');
+            contactForm.reset();
+        });
+    </script>
+</body>
+</html>
