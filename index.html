@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>株式会社pino foresta - 中小零細企業の越境ECをサポート</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <style>
         :root {
             --primary-color: #1a5d40;
             --secondary-color: #d4b78f;
+            --accent-color: #e67e22;
             --light-color: #f5f5f0;
             --dark-color: #333333;
             --spacing: 2rem;
@@ -24,6 +27,7 @@
             line-height: 1.6;
             color: var(--dark-color);
             background-color: var(--light-color);
+            overflow-x: hidden;
         }
         
         a {
@@ -40,12 +44,18 @@
         
         /* ヘッダー */
         header {
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.95);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
         }
         
         .header-container {
@@ -64,6 +74,7 @@
             font-size: 1.5rem;
             color: var(--primary-color);
             margin-left: 0.5rem;
+            transition: color 0.3s;
         }
         
         .logo-icon {
@@ -76,6 +87,12 @@
             justify-content: center;
             color: white;
             font-weight: bold;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        
+        .logo:hover .logo-icon {
+            transform: rotate(10deg);
+            background-color: var(--accent-color);
         }
         
         nav ul {
@@ -85,15 +102,33 @@
         
         nav ul li {
             margin-left: 1.5rem;
+            position: relative;
         }
         
         nav ul li a {
             font-weight: 500;
             transition: color 0.3s;
+            padding: 0.5rem 0;
+            display: inline-block;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s ease;
         }
         
         nav ul li a:hover {
-            color: var(--secondary-color);
+            color: var(--accent-color);
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
         }
         
         .mobile-menu-btn {
@@ -103,80 +138,252 @@
             font-size: 1.5rem;
             cursor: pointer;
             color: var(--primary-color);
+            transition: color 0.3s;
+        }
+        
+        .mobile-menu-btn:hover {
+            color: var(--accent-color);
         }
         
         /* ヒーローセクション */
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/placeholder.svg?height=800&width=1200');
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1596443686812-2f45229eebc3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80');
             background-size: cover;
             background-position: center;
+            background-attachment: fixed;
             color: white;
             text-align: center;
-            padding: 8rem 1rem;
+            padding: 10rem 1rem;
             margin-top: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(26, 93, 64, 0.3) 0%, rgba(0, 0, 0, 0.5) 100%);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
         }
         
         .hero h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease;
         }
         
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             max-width: 800px;
-            margin: 0 auto 2rem;
+            margin: 0 auto 2.5rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1.2s ease;
         }
         
         .btn {
             display: inline-block;
-            background-color: var(--primary-color);
+            background-color: var(--accent-color);
             color: white;
-            padding: 0.8rem 2rem;
-            border-radius: 4px;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
             font-weight: bold;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
+            border: 2px solid var(--accent-color);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            animation: fadeInUp 1.4s ease;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+            z-index: -1;
         }
         
         .btn:hover {
-            background-color: #124530;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .btn:hover::before {
+            width: 100%;
+        }
+        
+        .btn:active {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 3rem;
+            animation: fadeInUp 1.6s ease;
+        }
+        
+        .stat-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            padding: 1.5rem;
+            border-radius: 10px;
+            min-width: 200px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-5px);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+        
+        .stat-text {
+            font-size: 1rem;
+        }
+        
+        /* アニメーション */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
         }
         
         /* セクション共通 */
         section {
-            padding: var(--spacing) 0;
+            padding: 5rem 0;
+            position: relative;
         }
         
         .section-title {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
             position: relative;
         }
         
         .section-title h2 {
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: var(--primary-color);
             display: inline-block;
+            position: relative;
         }
         
         .section-title h2::after {
             content: '';
             display: block;
-            width: 50px;
+            width: 70px;
             height: 3px;
-            background-color: var(--secondary-color);
-            margin: 0.5rem auto 0;
+            background-color: var(--accent-color);
+            margin: 0.8rem auto 0;
+            transition: width 0.3s;
+        }
+        
+        .section-title:hover h2::after {
+            width: 100px;
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 1rem auto 0;
+        }
+        
+        /* ハイライトバナー */
+        .highlight-banner {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .highlight-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1596443686812-2f45229eebc3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80') center/cover;
+            opacity: 0.1;
+            z-index: 1;
+        }
+        
+        .highlight-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .highlight-banner h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+        }
+        
+        .highlight-banner p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            font-weight: 400;
         }
         
         /* 会社概要 */
         .about {
             background-color: white;
+            overflow: hidden;
         }
         
         .about-content {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            gap: 2rem;
+            gap: 3rem;
         }
         
         .about-text {
@@ -184,128 +391,417 @@
             min-width: 300px;
         }
         
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .about-text strong {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
         .about-image {
             flex: 1;
             min-width: 300px;
-            text-align: center;
+            position: relative;
         }
         
         .about-image img {
             max-width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s, box-shadow 0.5s;
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.03);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .about-image::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 3px solid var(--secondary-color);
+            border-radius: 10px;
+            top: 20px;
+            left: 20px;
+            z-index: -1;
         }
         
         /* サービス */
         .services {
             background-color: var(--light-color);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .services::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background-color: rgba(26, 93, 64, 0.05);
+            border-radius: 50%;
+            top: -150px;
+            right: -150px;
+            z-index: 0;
+        }
+        
+        .services::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background-color: rgba(212, 183, 143, 0.1);
+            border-radius: 50%;
+            bottom: -100px;
+            left: -100px;
+            z-index: 0;
         }
         
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            gap: 2.5rem;
+            position: relative;
+            z-index: 1;
         }
         
         .service-card {
             background-color: white;
-            border-radius: 8px;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.4s, box-shadow 0.4s;
+            position: relative;
+            z-index: 1;
         }
         
         .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
         }
         
         .service-icon {
             background-color: var(--primary-color);
             color: white;
-            font-size: 2rem;
-            height: 100px;
+            font-size: 2.5rem;
+            height: 120px;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-icon::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+            top: 0;
+            left: 0;
+        }
+        
+        .service-icon i {
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover .service-icon i {
+            transform: scale(1.2);
         }
         
         .service-content {
-            padding: 1.5rem;
+            padding: 2rem;
         }
         
         .service-content h3 {
             color: var(--primary-color);
             margin-bottom: 1rem;
+            font-size: 1.4rem;
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+        
+        .service-content h3::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background-color: var(--secondary-color);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        .service-card:hover .service-content h3::after {
+            width: 60px;
+        }
+        
+        .service-content p {
+            color: #666;
+            line-height: 1.7;
         }
         
         /* 特徴 */
         .features {
             background-color: white;
+            position: relative;
         }
         
         .features-list {
             display: flex;
             flex-wrap: wrap;
-            gap: 2rem;
+            gap: 2.5rem;
             justify-content: center;
         }
         
         .feature-item {
             flex: 1;
-            min-width: 250px;
+            min-width: 280px;
             max-width: 350px;
             text-align: center;
-            padding: 1.5rem;
-            border-radius: 8px;
-            background-color: var(--light-color);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 2.5rem 1.5rem;
+            border-radius: 15px;
+            background-color: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.4s, box-shadow 0.4s;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .feature-item::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            bottom: 0;
+            left: 0;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+            z-index: -1;
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-item:hover::before {
+            transform: scaleX(1);
         }
         
         .feature-icon {
-            font-size: 2.5rem;
+            font-size: 3rem;
             color: var(--primary-color);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            transition: transform 0.4s;
+        }
+        
+        .feature-item:hover .feature-icon {
+            transform: scale(1.2) rotate(10deg);
+            color: var(--accent-color);
         }
         
         .feature-item h3 {
             color: var(--primary-color);
             margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+        
+        .feature-item p {
+            color: #666;
+            line-height: 1.7;
+        }
+        
+        /* 世界地図セクション */
+        .world-map {
+            background-color: var(--light-color);
+            padding: 5rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .world-map-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .world-map-image {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .map-point {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+            z-index: 2;
+            box-shadow: 0 0 0 5px rgba(230, 126, 34, 0.3);
+            animation: pulse 2s infinite;
+        }
+        
+        .map-point::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.5;
+            animation: ripple 2s infinite;
+        }
+        
+        .map-point:nth-child(2) {
+            top: 40%;
+            left: 20%;
+            animation-delay: 0.5s;
+        }
+        
+        .map-point:nth-child(3) {
+            top: 30%;
+            left: 80%;
+            animation-delay: 1s;
+        }
+        
+        .map-point:nth-child(4) {
+            top: 70%;
+            left: 70%;
+            animation-delay: 1.5s;
+        }
+        
+        .map-point:nth-child(5) {
+            top: 60%;
+            left: 30%;
+            animation-delay: 2s;
+        }
+        
+        .map-tooltip {
+            position: absolute;
+            background-color: white;
+            padding: 1rem;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            min-width: 200px;
+            transform: translateY(10px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 3;
+        }
+        
+        .map-point:hover .map-tooltip {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+        
+        @keyframes ripple {
+            0% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(2.5);
+                opacity: 0;
+            }
         }
         
         /* お客様の声 */
         .testimonials {
-            background-color: var(--light-color);
-            padding: 4rem 0;
+            background-color: white;
+            padding: 5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .testimonials::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background-color: rgba(26, 93, 64, 0.03);
+            border-radius: 50%;
+            top: -200px;
+            left: -200px;
+        }
+        
+        .testimonial-slider {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
         }
         
         .testimonial-container {
-            max-width: 800px;
-            margin: 0 auto;
+            display: flex;
+            transition: transform 0.5s ease;
         }
         
         .testimonial-item {
+            flex: 0 0 100%;
             background-color: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            margin-bottom: 2rem;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .testimonial-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
         }
         
         .testimonial-content {
             font-style: italic;
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
             position: relative;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
         }
         
         .testimonial-content::before {
             content: '"';
-            font-size: 3rem;
+            font-size: 5rem;
             color: var(--secondary-color);
-            opacity: 0.3;
+            opacity: 0.2;
             position: absolute;
-            top: -20px;
-            left: -15px;
+            top: -40px;
+            left: -20px;
+            font-family: Georgia, serif;
         }
         
         .testimonial-author {
@@ -314,63 +810,131 @@
         }
         
         .testimonial-author img {
-            width: 50px;
-            height: 50px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
-            margin-right: 1rem;
+            margin-right: 1.5rem;
+            object-fit: cover;
+            border: 3px solid var(--secondary-color);
         }
         
         .author-info h4 {
             margin: 0;
             color: var(--primary-color);
+            font-size: 1.2rem;
         }
         
         .author-info p {
-            margin: 0;
+            margin: 0.3rem 0 0;
             font-size: 0.9rem;
             color: #666;
+        }
+        
+        .testimonial-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .testimonial-btn {
+            background-color: white;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            margin: 0 0.5rem;
+            transition: all 0.3s;
+        }
+        
+        .testimonial-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
         }
         
         /* お問い合わせ */
         .contact {
             background-color: var(--light-color);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background-color: rgba(212, 183, 143, 0.1);
+            border-radius: 50%;
+            bottom: -150px;
+            right: -150px;
         }
         
         .contact-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 2rem;
+            gap: 3rem;
+            position: relative;
+            z-index: 1;
         }
         
         .contact-info {
             flex: 1;
             min-width: 300px;
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
         }
         
         .contact-info h3 {
             color: var(--primary-color);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .contact-info h3::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary-color);
+            bottom: 0;
+            left: 0;
         }
         
         .contact-info p {
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
+            color: #555;
+            line-height: 1.7;
         }
         
         .contact-info-item {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
         
         .contact-info-item i {
             color: var(--primary-color);
-            margin-right: 0.5rem;
+            margin-right: 1rem;
+            font-size: 1.2rem;
             min-width: 20px;
         }
         
         .contact-form {
             flex: 1;
             min-width: 300px;
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
         }
         
         .form-group {
@@ -379,16 +943,23 @@
         
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
             font-weight: 500;
+            color: var(--primary-color);
         }
         
         .form-control {
             width: 100%;
-            padding: 0.8rem;
+            padding: 1rem;
             border: 1px solid #ddd;
-            border-radius: 4px;
+            border-radius: 8px;
             font-family: inherit;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
         }
         
         textarea.form-control {
@@ -396,28 +967,90 @@
             resize: vertical;
         }
         
+        .submit-btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(26, 93, 64, 0.3);
+        }
+        
+        .submit-btn:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(230, 126, 34, 0.4);
+        }
+        
         /* フッター */
         footer {
             background-color: var(--primary-color);
             color: white;
-            padding: 3rem 0 1rem;
+            padding: 4rem 0 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1596443686812-2f45229eebc3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80') center/cover;
+            opacity: 0.05;
+            top: 0;
+            left: 0;
         }
         
         .footer-content {
             display: flex;
             flex-wrap: wrap;
-            gap: 2rem;
-            margin-bottom: 2rem;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
         }
         
         .footer-logo {
-            flex: 1;
+            flex: 2;
             min-width: 250px;
         }
         
         .footer-logo h2 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+        }
+        
+        .footer-logo p {
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-link:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
         }
         
         .footer-links {
@@ -426,9 +1059,21 @@
         }
         
         .footer-links h3 {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
             color: var(--secondary-color);
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+        
+        .footer-links h3::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent-color);
+            bottom: 0;
+            left: 0;
         }
         
         .footer-links ul {
@@ -436,44 +1081,56 @@
         }
         
         .footer-links ul li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
         }
         
         .footer-links ul li a {
             color: white;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            display: inline-block;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+        
+        .footer-links ul li a::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            transition: transform 0.3s;
         }
         
         .footer-links ul li a:hover {
             color: var(--secondary-color);
+            transform: translateX(5px);
+        }
+        
+        .footer-links ul li a:hover::before {
+            transform: translateX(3px);
         }
         
         .copyright {
             text-align: center;
-            padding-top: 1rem;
+            padding-top: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        /* ハイライトバナー */
-        .highlight-banner {
-            background-color: var(--secondary-color);
-            color: var(--dark-color);
-            padding: 2rem 0;
-            text-align: center;
-        }
-        
-        .highlight-banner h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .highlight-banner p {
-            max-width: 800px;
-            margin: 0 auto;
-            font-weight: 500;
+            position: relative;
+            z-index: 1;
         }
         
         /* レスポンシブ対応 */
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .highlight-banner h3 {
+                font-size: 1.8rem;
+            }
+        }
+        
         @media (max-width: 768px) {
             .header-container {
                 padding: 0.8rem;
@@ -510,6 +1167,10 @@
                 border-bottom: 1px solid #eee;
             }
             
+            nav ul li a::after {
+                display: none;
+            }
+            
             .mobile-menu-btn {
                 display: block;
             }
@@ -523,15 +1184,55 @@
                 font-size: 2rem;
             }
             
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
             .section-title h2 {
                 font-size: 1.8rem;
+            }
+            
+            .highlight-banner h3 {
+                font-size: 1.5rem;
+            }
+            
+            .about-image::before {
+                display: none;
+            }
+            
+            .testimonial-item {
+                padding: 2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .stat-item {
+                width: 100%;
+            }
+            
+            .section-title h2 {
+                font-size: 1.6rem;
+            }
+            
+            .testimonial-author img {
+                width: 50px;
+                height: 50px;
             }
         }
     </style>
 </head>
 <body>
     <!-- ヘッダー -->
-    <header>
+    <header id="header">
         <div class="container header-container">
             <div class="logo">
                 <div class="logo-icon">P</div>
@@ -543,6 +1244,7 @@
                     <li><a href="#about">会社概要</a></li>
                     <li><a href="#services">サービス</a></li>
                     <li><a href="#features">特徴</a></li>
+                    <li><a href="#world-map">グローバル展開</a></li>
                     <li><a href="#testimonials">お客様の声</a></li>
                     <li><a href="#contact">お問い合わせ</a></li>
                 </ul>
@@ -552,16 +1254,31 @@
 
     <!-- ヒーローセクション -->
     <section class="hero">
-        <div class="container">
+        <div class="container hero-content">
             <h2>中小零細企業の越境ECを全力サポート</h2>
             <p>株式会社pino forestaは、中小零細企業に特化した通関サービスを提供。日本の優れた商品を世界へ届けるお手伝いをします。規模が小さいからこそ実現できる、きめ細やかな伴走型サポートが私たちの強みです。</p>
-            <a href="#contact" class="btn">無料相談はこちら</a>
+            <a href="#contact" class="btn">無料相談はこちら <i class="fas fa-arrow-right"></i></a>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-text">サポート企業数</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">30+</div>
+                    <div class="stat-text">輸出対応国</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">95%</div>
+                    <div class="stat-text">顧客満足度</div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- ハイライトバナー -->
     <div class="highlight-banner">
-        <div class="container">
+        <div class="container highlight-content">
             <h3>中小零細企業だからこそ、手厚いサポートを</h3>
             <p>大手企業向けサービスでは行き届かない、あなたのビジネスに寄り添った伴走型サポートを提供します。</p>
         </div>
@@ -570,17 +1287,18 @@
     <!-- 会社概要 -->
     <section id="about" class="about">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title" data-aos="fade-up">
                 <h2>会社概要</h2>
+                <p class="section-subtitle">中小零細企業の海外展開を支援する通関のエキスパート</p>
             </div>
             <div class="about-content">
-                <div class="about-text">
+                <div class="about-text" data-aos="fade-right" data-aos-delay="100">
                     <p>株式会社pino forestaは、<strong>中小零細企業の越境EC</strong>をサポートする通関業のエキスパートです。大手企業向けのサービスでは行き届かない、きめ細やかなサポートを提供することで、日本の優れた商品を世界に届けるお手伝いをしています。</p>
                     <p>私たちは、通関業務の複雑さや煩雑さが中小零細企業の海外展開の障壁となっていることを理解しています。そのため、<strong>輸出入の手続きから物流、規制対応まで一貫したサポート</strong>を行い、お客様が本業に集中できる環境を整えます。</p>
                     <p>「森（foresta）」のように豊かで持続可能なビジネス環境を創造するという理念のもと、中小零細企業の皆様と共に成長し、日本の優れた商品を世界に広げていくことを目指しています。</p>
                 </div>
-                <div class="about-image">
-                    <img src="/placeholder.svg?height=400&width=600" alt="株式会社pino forestaのオフィス">
+                <div class="about-image" data-aos="fade-left" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1577412647305-991150c7d163?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="株式会社pino forestaのオフィス">
                 </div>
             </div>
         </div>
@@ -589,33 +1307,42 @@
     <!-- サービス -->
     <section id="services" class="services">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title" data-aos="fade-up">
                 <h2>サービス内容</h2>
+                <p class="section-subtitle">中小零細企業の越境ECに特化したサービスをご提供します</p>
             </div>
             <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">🌏</div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-icon">
+                        <i class="fas fa-globe-asia"></i>
+                    </div>
                     <div class="service-content">
                         <h3>越境EC専門通関サポート</h3>
                         <p>日本の商品を海外に販売するための越境ECに特化した通関サービスを提供します。Amazon、eBay、Etsyなどの主要プラットフォームへの出品に必要な手続きをサポートします。</p>
                     </div>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">📦</div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-icon">
+                        <i class="fas fa-box"></i>
+                    </div>
                     <div class="service-content">
                         <h3>小口輸出特化サービス</h3>
                         <p>中小零細企業や個人事業主の方向けに、小ロットからの輸出に対応した通関サービスを提供。コストを抑えながら効率的に海外展開をサポートします。</p>
                     </div>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">🔍</div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
                     <div class="service-content">
                         <h3>規制対応コンサルティング</h3>
                         <p>各国の輸入規制や関税に関する最新情報を提供し、商品ごとに最適な輸出戦略をアドバイス。法令違反のリスクを最小限に抑え、スムーズな海外展開を実現します。</p>
                     </div>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">📋</div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
                     <div class="service-content">
                         <h3>伴走型海外展開支援</h3>
                         <p>通関業務だけでなく、海外マーケティングや現地パートナー紹介など、海外展開に必要な総合的なサポートを提供。中小零細企業の皆様の海外ビジネスを成功に導きます。</p>
@@ -628,24 +1355,74 @@
     <!-- 特徴 -->
     <section id="features" class="features">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title" data-aos="fade-up">
                 <h2>私たちの強み</h2>
+                <p class="section-subtitle">中小零細企業に特化しているからこそできる、きめ細やかなサポート</p>
             </div>
             <div class="features-list">
-                <div class="feature-item">
-                    <div class="feature-icon">👥</div>
+                <div class="feature-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
                     <h3>中小零細企業専門</h3>
                     <p>大手企業向けサービスとは異なり、中小零細企業の規模やニーズに合わせたサポート体制を構築。コストパフォーマンスの高いサービスを提供します。</p>
                 </div>
-                <div class="feature-item">
-                    <div class="feature-icon">🤝</div>
+                <div class="feature-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
                     <h3>手厚い伴走サポート</h3>
                     <p>担当者が一貫してサポートする伴走型のサービス提供。初めての海外展開でも安心して取り組めるよう、丁寧にガイドします。</p>
                 </div>
-                <div class="feature-item">
-                    <div class="feature-icon">🚀</div>
+                <div class="feature-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
                     <h3>越境EC特化ノウハウ</h3>
                     <p>越境ECに特化した専門知識と経験を活かし、効率的かつ効果的な海外展開戦略を提案。日本の商品を世界に届けるための最適な方法をご提案します。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 世界地図セクション -->
+    <section id="world-map" class="world-map">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>グローバル展開</h2>
+                <p class="section-subtitle">日本の優れた商品を世界各国へ</p>
+            </div>
+            <div class="world-map-container" data-aos="zoom-in">
+                <img src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2033&q=80" alt="世界地図" class="world-map-image">
+                <div class="map-point" style="top: 35%; left: 50%;">
+                    <div class="map-tooltip">
+                        <h4>日本</h4>
+                        <p>本社所在地。日本全国の中小企業をサポート</p>
+                    </div>
+                </div>
+                <div class="map-point">
+                    <div class="map-tooltip">
+                        <h4>北米</h4>
+                        <p>Amazon.comを中心に多数の日本企業の出店をサポート</p>
+                    </div>
+                </div>
+                <div class="map-point">
+                    <div class="map-tooltip">
+                        <h4>アジア</h4>
+                        <p>中国、韓国、台湾、東南アジアへの輸出をサポート</p>
+                    </div>
+                </div>
+                <div class="map-point">
+                    <div class="map-tooltip">
+                        <h4>オセアニア</h4>
+                        <p>オーストラリア、ニュージーランドへの輸出実績多数</p>
+                    </div>
+                </div>
+                <div class="map-point">
+                    <div class="map-tooltip">
+                        <h4>ヨーロッパ</h4>
+                        <p>EU圏内の複雑な規制にも対応した輸出サポート</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -654,33 +1431,56 @@
     <!-- お客様の声 -->
     <section id="testimonials" class="testimonials">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title" data-aos="fade-up">
                 <h2>お客様の声</h2>
+                <p class="section-subtitle">実際にサービスをご利用いただいたお客様からの声</p>
             </div>
-            <div class="testimonial-container">
-                <div class="testimonial-item">
-                    <div class="testimonial-content">
-                        <p>初めての海外販売で不安でしたが、pino forestaさんの丁寧なサポートのおかげで、スムーズに越境ECをスタートできました。担当者の方が常に寄り添ってくださり、質問にも迅速に対応していただけるので安心です。</p>
+            <div class="testimonial-slider" data-aos="fade-up" data-aos-delay="100">
+                <div class="testimonial-container" id="testimonial-container">
+                    <div class="testimonial-item">
+                        <div class="testimonial-content">
+                            <p>初めての海外販売で不安でしたが、pino forestaさんの丁寧なサポートのおかげで、スムーズに越境ECをスタートできました。担当者の方が常に寄り添ってくださり、質問にも迅速に対応していただけるので安心です。おかげで海外からの注文が増え、売上も伸びています。</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="お客様の写真">
+                            <div class="author-info">
+                                <h4>山田 健太郎様</h4>
+                                <p>手作り雑貨メーカー 代表</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="testimonial-author">
-                        <img src="/placeholder.svg?height=100&width=100" alt="お客様の写真">
-                        <div class="author-info">
-                            <h4>山田 健太郎様</h4>
-                            <p>手作り雑貨メーカー 代表</p>
+                    <div class="testimonial-item">
+                        <div class="testimonial-content">
+                            <p>大手の通関業者では対応してもらえなかった小ロットの輸出も、pino forestaさんなら柔軟に対応してくれます。中小企業の目線に立ったサービスが本当に助かっています。おかげで海外売上が前年比150%に成長しました。これからも長くお付き合いさせていただきたいと思います。</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=776&q=80" alt="お客様の写真">
+                            <div class="author-info">
+                                <h4>佐藤 美香様</h4>
+                                <p>オーガニック食品販売 経営者</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-item">
+                        <div class="testimonial-content">
+                            <p>越境ECの知識がほとんどなかった私たちでも、pino forestaさんの伴走サポートのおかげで、今では5カ国に商品を輸出できるようになりました。各国の規制や税関手続きなど、専門的なことをすべて任せられるので、本業に集中できています。本当に感謝しています。</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="お客様の写真">
+                            <div class="author-info">
+                                <h4>田中 誠一様</h4>
+                                <p>伝統工芸品製造 社長</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="testimonial-item">
-                    <div class="testimonial-content">
-                        <p>大手の通関業者では対応してもらえなかった小ロットの輸出も、pino forestaさんなら柔軟に対応してくれます。中小企業の目線に立ったサービスが本当に助かっています。おかげで海外売上が前年比150%に成長しました。</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <img src="/placeholder.svg?height=100&width=100" alt="お客様の写真">
-                        <div class="author-info">
-                            <h4>佐藤 美香様</h4>
-                            <p>オーガニック食品販売 経営者</p>
-                        </div>
-                    </div>
+                <div class="testimonial-controls">
+                    <button class="testimonial-btn" id="prev-testimonial">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="testimonial-btn" id="next-testimonial">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -689,31 +1489,32 @@
     <!-- お問い合わせ -->
     <section id="contact" class="contact">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title" data-aos="fade-up">
                 <h2>お問い合わせ</h2>
+                <p class="section-subtitle">中小零細企業の海外展開に関するご相談を無料で承ります</p>
             </div>
             <div class="contact-container">
-                <div class="contact-info">
+                <div class="contact-info" data-aos="fade-right" data-aos-delay="100">
                     <h3>中小零細企業の海外展開、お気軽にご相談ください</h3>
                     <p>越境ECや輸出入に関するお悩み、ご質問など、どんなことでもお気軽にお問い合わせください。初回相談は無料で承ります。</p>
                     <div class="contact-info-item">
-                        <i>📍</i>
+                        <i class="fas fa-map-marker-alt"></i>
                         <span>〒123-4567 東京都港区海岸1-2-3 ピノビル5階</span>
                     </div>
                     <div class="contact-info-item">
-                        <i>📞</i>
+                        <i class="fas fa-phone-alt"></i>
                         <span>03-1234-5678</span>
                     </div>
                     <div class="contact-info-item">
-                        <i>📧</i>
+                        <i class="fas fa-envelope"></i>
                         <span>info@pinoforesta.co.jp</span>
                     </div>
                     <div class="contact-info-item">
-                        <i>🕒</i>
+                        <i class="fas fa-clock"></i>
                         <span>営業時間: 平日 9:00〜18:00</span>
                     </div>
                 </div>
-                <div class="contact-form">
+                <div class="contact-form" data-aos="fade-left" data-aos-delay="200">
                     <form id="contactForm">
                         <div class="form-group">
                             <label for="name">お名前</label>
@@ -746,7 +1547,7 @@
                             <label for="message">お問い合わせ内容</label>
                             <textarea id="message" class="form-control" required></textarea>
                         </div>
-                        <button type="submit" class="btn">無料相談を申し込む</button>
+                        <button type="submit" class="submit-btn">無料相談を申し込む <i class="fas fa-paper-plane"></i></button>
                     </form>
                 </div>
             </div>
@@ -759,7 +1560,13 @@
             <div class="footer-content">
                 <div class="footer-logo">
                     <h2>株式会社pino foresta</h2>
-                    <p>中小零細企業の越境ECを全力サポート。日本の優れた商品を世界へ。</p>
+                    <p>中小零細企業の越境ECを全力サポート。日本の優れた商品を世界へ。私たちは、中小零細企業の皆様の海外展開を通関業務の側面からサポートし、グローバルビジネスの成功に貢献します。</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
                 </div>
                 <div class="footer-links">
                     <h3>リンク</h3>
@@ -767,8 +1574,18 @@
                         <li><a href="#about">会社概要</a></li>
                         <li><a href="#services">サービス</a></li>
                         <li><a href="#features">特徴</a></li>
+                        <li><a href="#world-map">グローバル展開</a></li>
                         <li><a href="#testimonials">お客様の声</a></li>
                         <li><a href="#contact">お問い合わせ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>サービス</h3>
+                    <ul>
+                        <li><a href="#services">越境EC専門通関サポート</a></li>
+                        <li><a href="#services">小口輸出特化サービス</a></li>
+                        <li><a href="#services">規制対応コンサルティング</a></li>
+                        <li><a href="#services">伴走型海外展開支援</a></li>
                     </ul>
                 </div>
             </div>
@@ -778,7 +1595,27 @@
         </div>
     </footer>
 
+    <!-- スクリプト -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
+        // AOSアニメーション初期化
+        AOS.init({
+            duration: 800,
+            easing: 'ease',
+            once: true,
+            offset: 100
+        });
+        
+        // ヘッダースクロール効果
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
         // モバイルメニューの切り替え
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const mainNav = document.getElementById('main-nav');
@@ -808,6 +1645,51 @@
                     });
                 }
             });
+        });
+        
+        // お客様の声スライダー
+        const testimonialContainer = document.getElementById('testimonial-container');
+        const prevBtn = document.getElementById('prev-testimonial');
+        const nextBtn = document.getElementById('next-testimonial');
+        let currentSlide = 0;
+        const slides = testimonialContainer.children;
+        const totalSlides = slides.length;
+        
+        function showSlide(index) {
+            if (index < 0) {
+                currentSlide = totalSlides - 1;
+            } else if (index >= totalSlides) {
+                currentSlide = 0;
+            } else {
+                currentSlide = index;
+            }
+            
+            testimonialContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+        
+        prevBtn.addEventListener('click', () => {
+            showSlide(currentSlide - 1);
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            showSlide(currentSlide + 1);
+        });
+        
+        // 自動スライド
+        let slideInterval = setInterval(() => {
+            showSlide(currentSlide + 1);
+        }, 5000);
+        
+        // スライダーにマウスが乗ったら自動スライドを停止
+        testimonialContainer.addEventListener('mouseenter', () => {
+            clearInterval(slideInterval);
+        });
+        
+        // スライダーからマウスが離れたら自動スライドを再開
+        testimonialContainer.addEventListener('mouseleave', () => {
+            slideInterval = setInterval(() => {
+                showSlide(currentSlide + 1);
+            }, 5000);
         });
         
         // お問い合わせフォームの送信処理
